@@ -29,6 +29,7 @@ define("INC",DIR_ROOT."/admin/includes");
 define("REGISTRATION",DIR_ROOT."/admin/registration");
 define("DASHBOARD",DIR_ROOT."/admin/dashboard");
 
+
 require_once(CONFIG."/dbcon.php");
 
 if (session_status() == PHP_SESSION_NONE) {

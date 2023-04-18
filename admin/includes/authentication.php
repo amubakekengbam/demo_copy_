@@ -1,20 +1,27 @@
-
 <?php 
+require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
-session_start();
-  if(!isset($_SESSION['auth'])){
-$_SESSION['auth_status']="login to access dashboard";
-header("Location: loginnew.php");
- exit(0);
+
+
+  if(!isset($_SESSION['auth_user'])){
+    $_SESSION['login_error']="Not authorized.";
+    header("Location: loginnew.php");
+  exit(0);
   }
-  else{
-if( $_SESSION['auth']=="1"){
-  header("Location: ../index.php");
-   exit(0);
-}  else{
-  header("Location: ../index.php");
-   exit(0);
-      }
 
-   }
-?>
+  switch($_SESSION['auth_user']['role_id']){
+    case 1 : //admin
+      header("Location: ../index.php"); //go to admin page
+    break;
+    case 2 : //admin
+      header("Location: ../index.php"); //go to officer page
+    break;
+    case 3 : //admin
+      header("Location: ../index.php"); //go to driver page
+    break;
+    default :
+      session_destroy();
+      session_start();
+      $_SESSION['login_error']="Not authorized.";
+      header("Location: loginnew.php");
+  }

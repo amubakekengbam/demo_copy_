@@ -52,43 +52,33 @@ if (isset($_POST['submit']) == 'Login') {
     if (empty($username) || empty($password)) {
         $error = "Please enter a username and password.";
     } else {
-        // Connect to the database and query the user table
 
-        $sql = "SELECT * FROM users WHERE email='$username' AND password='$password'";
-        $result = mysqli_query($conn, $sql);
-
-        // Check if a matching row was found in the user table
-        if (mysqli_num_rows($result) == 1) {
-            foreach($result as $row){
-                $user_id= $row['user_id'];
-                $user_name=$row['full_name'];
-                $user_email=$row['email'];
-                $user_phone=$row['mobile'];
-                $pic=$row['photo'];
-                $role_as= $row['role_id'];
-                /*from the sql  command email and password we get login nad print detail from foreach loop  we print it*/
+        try{
+            // Connect to the database and query the user table
+            $qry = "select * from users WHERE email=? AND password=?  ";
+            $stmt = $db->prepare($qry);
+            $resp = $stmt->execute( [$username, $password] );
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!$data){
+                $_SESSION['login_error'] = "Invalid username or password.";
+                header("location: loginnew.php");
             }
-            $_SESSION['auth']=$role_as;
-            $_SESSION['auth_user']=[
-                'user_id'=>$user_id,
-                'user_name'=>$user_name,
-                'user_email'=>$user_email,
-                'user_phone'=>$user_phone,
-                'user_pic'=>$pic
-            ];
-
-        
-                        // Set the session variable
-            // header("Location:../index.php"); // Redirect the user to the dashboard page
-            // exit();
+            set_login_session( $data );
             header("location: authentication.php");
-        } else {
-            $_SESSION['login_error'] = "Invalid username or password.";
+        }
+        catch (PDOException $e) {
+           // $_SESSION['login_error'] = "Error: " . $e->getMessage();
+            $_SESSION['login_error'] = "Error: Internal Server Error";
             header("location: loginnew.php");
         }
-      
-
-
-        mysqli_close($conn);
+        
+       
     }
+}
+
+function set_login_session($user){
+    unset($user['password']);
+    unset($user['created_at']);
+    unset($user['updated_at']);
+    $_SESSION['auth_user'] = $user;
 }

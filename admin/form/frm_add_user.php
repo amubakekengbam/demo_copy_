@@ -1,13 +1,18 @@
 <?php
-require_once("../../path.php");
-require_once(FORM."/qry_add_user.php");
+require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
+if(empty($_SESSION['auth_user']['user_id'])){
+    header('location:includes/loginnew.php');
+}
 
+$role_id = $_SESSION['auth_user']['role_id'];
 
-include_once(INC.'/header.php');
-include_once(INC.'/topbar.php');
-include_once(INC.'/sidebar.php');
+include("../includes/header.php");
+include('../includes/topbar.php');
+include('../includes/sidebar.php');
+
 ?>
+
 
 
 <div class="content-wrapper">
