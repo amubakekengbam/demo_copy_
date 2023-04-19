@@ -36,7 +36,7 @@
                 <?php if($role_id == 1){ //admin  ?>
                 <!--HTML CONTENT-->
                 <li class="nav-item">
-                    <a href="../user/frm_profile.php" class="nav-link">
+                    <a href=".././frm_profile.php" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Profile
@@ -111,7 +111,7 @@
                 <!--HTML CONTENT-->
 <!--HTML CONTENT-->
 <li class="nav-item">
-                    <a href="../user/frm_profille.php" class="nav-link">
+                    <a href="<?= $url ?>user/frm_profile.php" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Profile
@@ -188,6 +188,11 @@
 
                 <li class="nav-item">
                     <a href="<?= $url ?>index.php" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                        </br>
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard

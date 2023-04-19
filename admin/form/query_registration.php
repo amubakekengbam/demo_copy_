@@ -1,5 +1,5 @@
 <?php
-include('../config/dbcon.php');
+require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 ?>
 
 

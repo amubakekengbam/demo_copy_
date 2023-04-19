@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
+require_once(FORM. "/qry_add_user.php");
+
 
 if(empty($_SESSION['auth_user']['user_id'])){
     header('location:includes/loginnew.php');
@@ -68,7 +70,13 @@ include('../includes/sidebar.php');
                     </div>
                     <div class="col-12">
                         <label for="designation">Designation:</label>
-                        <input type="text" class="form-control" name="designation" id="designation" required />
+                        <select class="form-control" name="designation" id="designation" required />
+                        <option selected>Choose...</option>
+                        <option>Joint Register</option>
+                        <option>Register General</option>
+                        <option>CPC</option>
+                        <option>Driver</option>
+                        </select>
                     </div>
                     <div class="col-12">
                         <label for="role_id">Select User Role:</label>
@@ -77,35 +85,24 @@ include('../includes/sidebar.php');
                             <?php
                                 $roles = Add_user::get_role(); //calling static Class method
                                 foreach($roles as $row){ 
-                                    echo "<option value='{$row['role_id']}'  >{$row['role_name']}</option>";
+                                    echo "<option value='{$row['role_id']}'>{$row['role_name']}</option>";
                                 }
-
                             ?>
                         </select>
                     </div>
 
-
                     <div class="col-md-12">
                         <br />
                         <button type="button" id="purchase-btn-save" class="btn btn-sm btn-primary input1"
-                            onClick="userSave();">Save</button> &nbsp;
-                        <br /> <br />
+                            onClick="userSave();">Save</button> 
+                        <br/><br />
                     </div>
-
                 </form><!-- end of purchase form -->
-
-
-
-
-
             </div>
         </div><!-- /.container-fluid -->
     </div>
     <!--end of content body-->
-
 </div>
-
-
 
 <?php
 include(INC."/footer.php");

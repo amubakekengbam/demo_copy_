@@ -28,6 +28,7 @@ define("FORM",DIR_ROOT."/admin/form");
 define("INC",DIR_ROOT."/admin/includes");
 define("REGISTRATION",DIR_ROOT."/admin/registration");
 define("DASHBOARD",DIR_ROOT."/admin/dashboard");
+define("USER",DIR_ROOT."/admin/user");
 
 
 require_once(CONFIG."/dbcon.php");

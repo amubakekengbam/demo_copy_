@@ -1,5 +1,5 @@
 <?php
-require_once("../../path.php");
+require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
 class Add_user{
     public static function get_role(){

@@ -32,7 +32,7 @@ include('includes/sidebar.php');
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="admin/index.php">Home</a></li>
                         <li class="breadcrumb-item active"> <a href="includes/logout.php">logout</a> </li>
                     </ol>
                 </div><!-- /.col -->
@@ -104,13 +104,13 @@ include('includes/sidebar.php');
 
 
 
+</div>
 
 
 
-
-    <?php
+<?php
 include("includes/footer.php");
 ?>
-    </body>
+</body>
 
-    </html>
+</html>
