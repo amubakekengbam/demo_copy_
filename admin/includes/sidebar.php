@@ -76,29 +76,29 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../form/frm_add_user.php" class="nav-link">
+                            <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../form/add_driver.php" class="nav-link">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ADD DRIVER</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../form/add_driver.php" class="nav-link">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Request</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="../form/frm_registration.php" class="nav-link">
+                            <!-- <a href="../admin/form/frm_registration.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Registration</p>
-                            </a>
+                            </a> -->
                         </li>
                     </ul>
                 </li>
@@ -111,22 +111,22 @@
                 <!--HTML CONTENT-->
 <!--HTML CONTENT-->
 <li class="nav-item">
-                    <a href="<?= $url ?>user/frm_profile.php" class="nav-link">
+                    <a href="<?= $url ?>user/update_profile.php" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Profile
                         </p>
                     </a>
                 </li>
-
+<!-- 
                 <li class="nav-item">
-                    <a href="../form/frm_registration.php" class="nav-link">
+                    <a href="/admin/form/frm_registration.php" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Register user
                         </p>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a href="<?= $url ?>dashboard/user_role.php" class="nav-link">
@@ -142,7 +142,7 @@
 
 
                 <li class="nav-item ">
-                    <a href="#" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Vehicle Management
@@ -151,26 +151,26 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./form/frm_add_user.php" class="nav-link">
+                            <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../form/add_driver.php" class="nav-link">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ADD DRIVER</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../form/add_driver.php" class="nav-link">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Request</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="../form/frm_registration.php" class="nav-link">
+                            <a href="<?= $url ?>form/frm_registration.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Registration</p>
                             </a>

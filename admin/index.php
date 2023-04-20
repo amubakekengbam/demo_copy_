@@ -40,7 +40,7 @@ include('includes/sidebar.php');
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+<?php echo $_SESSION['auth_user']['role_id']?>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
