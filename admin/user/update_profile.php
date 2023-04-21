@@ -45,7 +45,7 @@ include('../includes/sidebar.php');
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" action="qry_update_profile">
+        <!-- <form method="post" action="qry_update_profile">
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
@@ -55,7 +55,7 @@ include('../includes/sidebar.php');
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div> -->
-                <div class="form-group">
+        <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                         <div class="custom-file">
@@ -74,20 +74,61 @@ include('../includes/sidebar.php');
             </div>
             <!-- /.card-body -->
 
-            <div class="card-footer">
+        <!-- <div class="card-footer">
                 <button type="submit" class="btn btn-primary"  onClick="submitFrom();">Submit</button>
             </div>
+        </form> -->
+
+
+
+        <!-- </div> -->
+
+
+        <form action="qry_update_profile.php" id="form_img" method="post" role="form" enctype="multipart/form-data">
+
+            <div class="form-check">
+                <input type="text" placeholder="address" name="address">
+                <input type="file" name="photo" multiple>
+                <button type="submit" class="btn btn-primary">Submit </button>
+
+            </div>
         </form>
+
+
     </div>
+
 </div>
 
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#form_img").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData($("#form_img")[0]);
+
+        $.ajax({
+            url: $("#form_img").attr('action'),
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(resp) {
+                console.log(resp);
+            }
+        });
+    });
+});
+</script>
 
 <?php
 include(INC."/footer.php");
 ?>
 
 </body>
-<script src="<?= URL_JS ?>/update_profile.js"></script>
-
 
 </html>
+
+<?php
+include(INC."/footer.php");
+?>

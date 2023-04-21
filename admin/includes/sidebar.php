@@ -36,7 +36,7 @@
                 <?php if($role_id == 1){ //admin  ?>
                 <!--HTML CONTENT-->
                 <li class="nav-item">
-                    <a href=".././frm_profile.php" class="nav-link">
+                    <a href="<?= $url ?>user/update_profile.php" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Profile

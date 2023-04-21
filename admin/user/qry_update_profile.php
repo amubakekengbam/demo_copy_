@@ -19,9 +19,9 @@ include('../includes/sidebar.php');
 <?php  
   if($_SERVER['REQUEST_METHOD']== 'POST'){
 $address=$_POST['address'];
-$photo=$_POST[''];
-$role=$_POST["role"];
-echo $phone.$name.$role;
+$photo=$_POST['photo'];
+
+echo $phone.$name;
 
 if(empty($Address)||empty($photo)){
     echo "phone cannot be empty";
