@@ -1,5 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    require '../../vendor/autoload.php';
+                
 
 class Add_user{
     public static function get_role(){
@@ -96,6 +101,42 @@ class Add_user{
         return $result;
     }
 
+
+    public function sendemail_verify($name, $email,$verify_token){
+        $mail = new PHPMailer(true);
+       
+                      
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'amubakekengbam@gmail.com';                     //SMTP username
+            $mail->Password   = 'gzplcxdlabehmmck';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                            //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+           //Recipients
+            $mail->setFrom('amubakekengbam@gmail.com', 'Mailer');
+            $mail->addAddress('kekengbam10@gmail.com');     //Add a recipient
+           // $mail->addReplyTo('info@example.com', 'Information');
+
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = "TESTING";
+            $mail->Body =" <a href='http://localhost/demo_copy/admin/includes/loginnew.php/".$verify_token."'>click</a>";
+            $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+        
+            $mail->send();
+            return 1;
+            //echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+     }
+
     public function user_register( ){
         global $db;
 
@@ -108,6 +149,7 @@ class Add_user{
         $cpassword = $_POST['cpassword']??"";
 
         $req_field = [ $temp_user_id, $password, $cpassword  ];
+
         
         if( ! $this->validate($req_field) ){
             $result["msg"] = "Invalid Input.";
@@ -130,18 +172,25 @@ class Add_user{
         }
 
         $qry = "insert into users (     full_name,      email,           mobile,     gender,     role_id, 
-                                        designation,    officer_user_id, password,   created_at, updated_at   ) 
-                                 value ( ?,?,?,?,?,     ?,?,?,?,now() )";
+                                        designation,    officer_user_id, password,   created_at,  verify_token, updated_at  ) 
+                                 value ( ?,?,?,?,?,     ?,?,?,?,?,now())";
         $stmt = $db->prepare($qry);
         $resp = $stmt->execute([ $data['full_name'],      $data['email'],            $data['mobile'],     $data['gender'],     $data['role_id'], 
-                                 $data['designation'],    $data['officer_user_id'],  $password,           $data['created_at']      ]);
+                                 $data['designation'],    $data['officer_user_id'],  $password,           $data['created_at']   , $data['verify_token']   ]);
         
         if(!$resp){
             $result["msg"] = "Failed to Save.";
             return  $result;
         }
+
+        $name = $data['full_name'];
+        $email = $data['email'];
+        $verify_token = $data['verify_token'];
+        $mail=$this->sendemail_verify("$name","$email","$verify_token");
+        if($mail=1){
         $result = ["success"=>1, "msg"=>"Successfully save."];               
         return $result ;
+        }
         
     }
 
@@ -211,6 +260,3 @@ if($action != ""){
 
 
 }
-
-
-

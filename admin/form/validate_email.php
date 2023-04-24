@@ -1,50 +1,49 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>User Account Activation by Email Verification using PHP</title>
-<!-- CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-<?php
-if($_GET['key'] && $_GET['token'])
-{
-include "db.php";
-$email = $_GET['key'];
-$token = $_GET['token'];
-$query = mysqli_query($conn,
-"SELECT * FROM `users` WHERE `email_verification_link`='".$token."' and `email`='".$email."';"
-);
-$d = date('Y-m-d H:i:s');
-if (mysqli_num_rows($query) > 0) {
-$row= mysqli_fetch_array($query);
-if($row['email_verified_at'] == NULL){
-mysqli_query($conn,"UPDATE users set email_verified_at ='" . $d . "' WHERE email='" . $email . "'");
-$msg = "Congratulations! Your email has been verified.";
-}else{
-$msg = "You have already verified your account with us";
+<?php 
+
+ session_start();
+ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
+
+if(isset($_GET['token'])){
+ $token=$_GET['token'];
+ $verify_query= "SELECT verify_token FROM  user  WHERE  verify_toke='$token' LIMIT 1";
+ $verify_query_run= mysqli_query($conn, $verify_query);
+  if(mysqli_num_rows(verify_query_run)>0){
+     $row =mysqli_fetch_array($verify_query_run);
+     if($row['verify_status']=="0")
+    {  $clicked_token= $row['verify_token'];
+        $update_query=" UPDATE user SET verify_status='1' WHERE verify_token='$clicked_token' LIMIT 1";
+        $update_query_run=mysqli_query($conn,$update_query);
+    
+    }
+
+    if($update_query_run){
+        $_SESSION['status']= "Your Account has been verified Successfully";
+        header("Location:loginnew.php");
+    }
+      
+  else{
+     
+    $_SESSION['status']="Verification Failed";
+    header("Location : loginnew.php");
+    exit(0);
+  }
 }
-} else {
-$msg = "This email has been not registered with us";
+
+
+else{
+
+    $_SESSION['status']="Email Already verified. Please Login";
+    header("Location : loginnew.php");
+    exit(0);
 }
-}
-else
-{
-$msg = "Danger! Your something goes to wrong.";
 }
 ?>
-<div class="container mt-3">
-<div class="card">
-<div class="card-header text-center">
-User Account Activation by Email Verification using PHP
-</div>
-<div class="card-body">
-<p><?php echo $msg; ?></p><br>
-<a href="login.php" class="btn btn-default">Login</a>
-</div>
-</div>
-</div>
-</body>
-</html>
+
+<h3> Verify email </h3>
+
+
+<?php
+
+
+
+?>

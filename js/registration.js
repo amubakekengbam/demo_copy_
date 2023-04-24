@@ -75,6 +75,7 @@ function ajax_send_multipart(url, param)
         success: function(datalist){
                 result = datalist;
                 $("#loading-div").hide();
+                console.log(result);
         },
         error: function(jqXHR, exception, errorThrown){
                 result =  { status: 0,

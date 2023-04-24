@@ -33,6 +33,14 @@ require_once(FORM."/qry_add_user.php");
                 <div class="form-left">
                     <img src="#" alt="form" />
                 </div>
+                <div class="alert">
+                    <?php 
+                    if(isset($_SESSION['status'])){
+                        echo"<h4>".$_SESSION["status"]."<h4>";
+                        unset($_SESSION['status']);
+                    }
+                    ?>
+                </div>
                 <form class="form-detail" name="register-form"  id="register-form"  method="post">
                     <h2>Register Form</h2>
                     <input type="hidden" class="form-control" name='action' id="action_id" value="user_register"  >
