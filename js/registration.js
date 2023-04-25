@@ -1,6 +1,7 @@
 
-
-
+const otpContainer = document.querySelector('.otp-container');
+const submitOtp = document.querySelector('.submit-otp');
+const otpError= document.querySelector('.otp-error');
 function checkMobile(){
     var param = {
         "action": "check_mobile",
@@ -46,16 +47,6 @@ function register_user(){
         break;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

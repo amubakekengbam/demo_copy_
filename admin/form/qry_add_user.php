@@ -21,7 +21,7 @@ class Add_user{
 
         $result = ["success"=>0, "msg"=>"Internal Server Error."];
 
-       
+        $verify_token=md5(rand());
 
         $full_name = $_POST['full_name']??"";
         $email = $_POST['email']??"";
@@ -43,11 +43,11 @@ class Add_user{
 
 
         $qry = "insert into temp_users (     full_name,      email,          mobile,     gender,     role_id, 
-                                            designation,    officer_user_id, created_at     ) 
-                                 value ( ?,?,?,?,?,     ?,?, now())";
+                                            designation,    officer_user_id, created_at,verify_token    ) 
+                                 value ( ?,?,?,?,?,     ?,?, now(),?)";
         $stmt = $db->prepare($qry);
         $resp = $stmt->execute([ $full_name,      $email,          $mobile,     $gender,     $role_id, 
-                                 $designation,    $officer_user_id,    ]);
+                                 $designation,    $officer_user_id, $verify_token   ]);
         
         if(!$resp){
             $result["msg"] = "Failed to Save.";
@@ -126,7 +126,7 @@ class Add_user{
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = "TESTING";
-            $mail->Body =" <a href='http://localhost/demo_copy/admin/includes/loginnew.php/".$verify_token."'>click</a>";
+            $mail->Body =" <a href='http://localhost/demo_copy/admin/form/validate_email.php?token=".$verify_token."'>click</a>";
             $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
         
             $mail->send();
@@ -147,6 +147,7 @@ class Add_user{
         $temp_user_id = $_POST['temp_user_id']??"";
         $password = $_POST['password']??"";
         $cpassword = $_POST['cpassword']??"";
+       // 
 
         $req_field = [ $temp_user_id, $password, $cpassword  ];
 
