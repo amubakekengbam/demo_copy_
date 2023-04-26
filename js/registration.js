@@ -39,11 +39,12 @@ function register_user(){
         break;
         case 1 :
             $(".input1").attr("disabled", true);
-            Object.keys(resp.data).forEach(function(key){
-                $("#"+key).val(resp.data[key]);
-            });
+            // Object.keys(resp.data).forEach(function(key){
+            //     $("#"+key).val(resp.data[key]);
+            // });
             $("#extend-form").show();
             $("#check_number_btn").hide();
+            window.location.href=resp.link;    
         break;
     }
 }

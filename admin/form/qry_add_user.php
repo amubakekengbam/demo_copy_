@@ -184,14 +184,20 @@ class Add_user{
             return  $result;
         }
 
-        $name = $data['full_name'];
-        $email = $data['email'];
-        $verify_token = $data['verify_token'];
-        $mail=$this->sendemail_verify("$name","$email","$verify_token");
-        if($mail=1){
-        $result = ["success"=>1, "msg"=>"Successfully save."];               
+        // $name = $data['full_name'];
+        // $email = $data['email'];
+        // $verify_token = $data['verify_token'];
+        // $mail=$this->sendemail_verify("$name","$email","$verify_token");
+        // if($mail=1){
+        {
+        $result = ["success"=>1, "msg"=>"Successfully save.", "link"=>"http://".$_SERVER['SERVER_NAME']."/demo_copy/admin/includes/loginnew.php"];               
         return $result ;
+        header("Location: ../includes/loginnew.php");
         }
+        // else{
+        // header("Location: ../loginnew.php");
+        // return $result;
+        // }
         
     }
 

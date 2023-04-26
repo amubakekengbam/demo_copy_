@@ -7,6 +7,9 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
   exit(0);
   }
 
+   if($_SESSION['auth_user']['verify_status']==0){
+    header("Location:frm_mail_otp.php");
+  }else
   switch($_SESSION['auth_user']['role_id']){
    
     case 1:  //admin
@@ -24,3 +27,4 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
       $_SESSION['login_error']="Not authorized.";
       header("Location: loginnew.php");
   }
+

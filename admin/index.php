@@ -55,6 +55,7 @@ include('includes/sidebar.php');
                             <?=$_SESSION['auth_user']['designation']?>
                             <h2> welcome. <?= $_SESSION['auth_user']['full_name'] ?></h2>
                             <p>New Orders</p>
+                            <?php echo $_SESSION['auth_user']['verify_status']?>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -65,7 +66,8 @@ include('includes/sidebar.php');
             </div>
         </div>
     </section>
-
+    
+    
 
     <?php
   if($role_id == 1){
