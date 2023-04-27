@@ -84,15 +84,23 @@ include('../includes/sidebar.php');
         <!-- </div> -->
 
 
-        <form action="qry_update_profile.php" id="form_img" method="post" role="form" enctype="multipart/form-data">
+        <form action="qry_upadte_profile.php" id="form_img" method="post" role="form" enctype="multipart/form-data">
 
-            <div class="form-check">
-                <input type="text" placeholder="address" name="address">
-                <input type="file" name="photo" multiple>
-                <button type="submit" class="btn btn-primary">Submit </button>
 
-            </div>
-        </form>
+                <input type="file" name="choosefile" value="" />
+
+                <div>
+
+                    <button type="submit" name="uploadfile">
+
+                        UPLOAD
+
+                    </button>
+
+                </div>
+
+            </form>
+
 
 
     </div>

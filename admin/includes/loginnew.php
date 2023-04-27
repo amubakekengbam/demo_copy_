@@ -23,21 +23,22 @@ $url = $http . $_SERVER["SERVER_NAME"].'/demo_copy/admin/';
     <link rel="stylesheet" href="../assests/dist/css/adminlte.min.css">
 </head>
 
-<body class="img js-fullheight" style="background-image: url(../assests/dist/img/bg.jpg);">
-    <!-- <div class="position-relative">
-        <div class="col-sm-6"> -->
-    <div class="col-md-3 offset-md-4">
-        <h1>Login Page</h1>
-        <?php if (isset($_SESSION['login_error'])) {
+<body class="login-page" style="min-height: 496.781px; background-image: url(../assests/dist/img/high_court.jpg);">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Vehicle Management System <b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <?php if (isset($_SESSION['login_error'])) {
                             echo "<p style='color: RED;' >". $_SESSION['login_error'] ."</p>"; 
                             unset( $_SESSION['login_error']  );
                         } 
                     ?>
-        <div class="page-content">
-            <div class="form-v6-content">
-                <div class="row">
-                    <img src="#" alt="" />
-                </div>
+
                 <form action="logincode.php" method="POST">
                     <label>Username:</label><br>
                     <input type="text" name="username"><br>
@@ -48,9 +49,13 @@ $url = $http . $_SERVER["SERVER_NAME"].'/demo_copy/admin/';
                     <input type="submit" value="Login" name="submit">
                 </form>
             </div>
-
         </div>
+    
     </div>
 </body>
+<!-- 
+<?php 
 
+include("../includes/footer.php");
+?> -->
 </html>

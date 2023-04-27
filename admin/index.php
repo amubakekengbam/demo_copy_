@@ -46,7 +46,7 @@ include('includes/sidebar.php');
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -56,6 +56,17 @@ include('includes/sidebar.php');
                             <h2> welcome. <?= $_SESSION['auth_user']['full_name'] ?></h2>
                             <p>New Orders</p>
                             <?php echo $_SESSION['auth_user']['verify_status']?>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">      
+                     <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3> Request form </h3>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>

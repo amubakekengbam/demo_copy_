@@ -16,10 +16,24 @@ include('../includes/sidebar.php');
 ?>
 
 
+
+<?php 
+
+ if(isset($_POST['upload'])){
+ $filename=$_FILES["choosefile"]["name"];
+ $tempname=$_FILES["choosefile"]["temp_name"];
+
+$folder="iamges/".$filesname;
+
+
+$sql="INSER INTO image(filename) VALUES($filename)";
+
+?>
+<!-- 
 <?php  
-  if($_SERVER['REQUEST_METHOD']== 'POST'){
+  if (isset($_POST['upload'])){
 $address=$_POST['address'];
-$photo=$_POST['photo'];
+$photo=addslashes($FILIES['images']);
 
 echo $phone.$name;
 
@@ -44,4 +58,4 @@ else{
 }
   }
 
-  ?>
+  ?>-!>
