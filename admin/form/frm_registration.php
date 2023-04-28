@@ -30,8 +30,7 @@ require_once(FORM."/qry_add_user.php");
 
         <div class="page-content">
             <div class="form-v6-content">
-                <div class="form-left">
-                    <img src="#" alt="form" />
+                <div class="form-left">                
                 </div>
                 <div class="alert">
                     <?php 
@@ -42,12 +41,12 @@ require_once(FORM."/qry_add_user.php");
                     ?>
                 </div>
                 <form class="form-detail" name="register-form"  id="register-form"  method="post">
-                    <h2>Register Form</h2>
+                    <h2 class="text-center">Register Form</h2><br>
                     <input type="hidden" class="form-control" name='action' id="action_id" value="user_register"  >
                     <input type="hidden" class="form-control" name='temp_user_id' id='temp_user_id' >
-                    <div>
-                        <label for="full_name">Mobile:</label>
+                    <div class="content-center text-center">                
                         <input type="text" class="form-control input1" name='phone' id='phone' placeholder="Mobile Number">
+                        <br>
                         <button type="button" value='check_number'  id='check_number_btn' class="btn btn-primary"
                             onClick="checkMobile();">Validate</button>
                     </div>

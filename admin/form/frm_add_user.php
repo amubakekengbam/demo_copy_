@@ -23,12 +23,12 @@ include('../includes/sidebar.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">User_role</h1>
+                    <h1 class="m-0 text-blue"> ADD USER</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User_role</li>
+                        <li class="breadcrumb-item active">Add User</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -37,68 +37,68 @@ include('../includes/sidebar.php');
     <!-- /.content-header -->
 
 
-
-
-
     <!-- start of content body -->
     <div class="page-content">
         <div class="container-fluid">
-            <div class="col-md-6 offset-md-3">
+            <div class="card card-success card-outline">
+                <div class="card-header"> <i class="fa fa-user"></i>&ensp;Add User</div>
+                <div class="card-body">
+                    <form class="row g-3 needs-validation " name="add_user-form" id="add_user-form" method="POST">
 
-                <form class="row g-3 needs-validation " name="add_user-form" id="add_user-form" method="POST">
+                        <input type="hidden" name="action" id="action_id" value="user_addition" />
 
-                    <input type="hidden" name="action" id="action_id" value="user_addition" />
+                        <div class="col-12">
+                            <label for="full_name">Full Name:</label>
+                            <input type="text" class="form-control" name="full_name" id="full_name" required
+                                autofocus />
+                        </div>
+                        <div class="col-12">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" name="email" id="email" required />
+                        </div>
+                        <div class="col-12">
+                            <label for="mobile">Mobile:</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile" min-length="10"
+                                max-length="10" required />
+                        </div>
+                        <div class="col-12">
+                            <label for="gender">Gender:</label> <br />
+                            <input type="radio" name="gender" value="male" checked required />&nbsp; Male
+                            <input type="radio" name="gender" value="female" required />&nbsp; Female
+                            <input type="radio" name="gender" value="transgender" required />&nbsp; Other
+                        </div>
+                        <div class="col-12">
+                            <label for="designation">Designation:</label>
+                            <select class="form-control" name="designation" id="designation" required />
+                            <option selected>Choose...</option>
+                            <option>Joint Register</option>
+                            <option>Register General</option>
+                            <option>CPC</option>
+                            <option>Driver</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="role_id">Select User Role:</label>
+                            <select class="form-control" name="role_id" id="role_id" required>
+                                <option value="" selected>Choose....</option>
+                                <?php
+            $roles = Add_user::get_role(); //calling static Class method
+            foreach($roles as $row){ 
+                echo "<option value='{$row['role_id']}'>{$row['role_name']}</option>";
+            }
+        ?>
+                            </select>
+                        </div>
 
-                    <div class="col-12">
-                        <label for="full_name">Full Name:</label>
-                        <input type="text" class="form-control" name="full_name" id="full_name" required autofocus />
-                    </div>
-                    <div class="col-12">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" name="email" id="email" required />
-                    </div>
-                    <div class="col-12">
-                        <label for="mobile">Mobile:</label>
-                        <input type="text" class="form-control" name="mobile" id="mobile" min-length="10"
-                            max-length="10" required />
-                    </div>
-                    <div class="col-12">
-                        <label for="gender">Gender:</label> <br />
-                        <input type="radio" name="gender" value="male" checked required />&nbsp; Male
-                        <input type="radio" name="gender" value="female" required />&nbsp; Female
-                        <input type="radio" name="gender" value="transgender" required />&nbsp; Transgender
-                    </div>
-                    <div class="col-12">
-                        <label for="designation">Designation:</label>
-                        <select class="form-control" name="designation" id="designation" required />
-                        <option selected>Choose...</option>
-                        <option>Joint Register</option>
-                        <option>Register General</option>
-                        <option>CPC</option>
-                        <option>Driver</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label for="role_id">Select User Role:</label>
-                        <select class="form-control" name="role_id" id="role_id" required>
-                            <option value="" selected>Choose....</option>
-                            <?php
-                                $roles = Add_user::get_role(); //calling static Class method
-                                foreach($roles as $row){ 
-                                    echo "<option value='{$row['role_id']}'>{$row['role_name']}</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="col-md-12">
-                        <br />
-                        <button type="button" id="purchase-btn-save" class="btn btn-sm btn-primary input1"
-                            onClick="userSave();">Save</button> 
-                        <br/><br />
-                    </div>
-                </form><!-- end of purchase form -->
-            </div>
+                        <div class="col-md-12">
+                            <br />
+                            <button type="button" id="purchase-btn-save" class="btn btn-sm btn-primary input1"
+                                onClick="userSave();">Save</button>
+                            <br /><br />
+                        </div>
+                    </form>
+                </div>
+            </div>        
         </div><!-- /.container-fluid -->
     </div>
     <!--end of content body-->

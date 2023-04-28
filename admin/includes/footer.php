@@ -1,8 +1,8 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2013-2023 <a href="http://adminlte.io">High Court of Manipur</a>.</strong>
+    <strong>Copyright &copy; 2023-2024 <a href="http://adminlte.io">High Court of Manipur</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.5
+      <b>Version</b> 0.5.1
     </div>
 
   </footer>

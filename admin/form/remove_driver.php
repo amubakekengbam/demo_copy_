@@ -35,7 +35,7 @@ include('../includes/sidebar.php');
     <div style="padding-left:100px; padding-right:500px" >
         <form class="form-detail" action="add_driver.php" method="post">
             <div class="mb-3">
-                <h1> ADD OFFICER</h1>
+                <h1> Remove Officer</h1>
 
                 <label for="ph_number" class="form-label"> Phone Number</label> <br><br>
 
@@ -51,7 +51,7 @@ include('../includes/sidebar.php');
                         <input type="text" name="role" class="form-control" id="role">
                         <div>
                             <br><br>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
 
                         </div>
                     </div>
