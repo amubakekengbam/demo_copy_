@@ -29,8 +29,8 @@ class Add_user{
         $designation = $_POST['designation']??"";
         $role_id = $_POST['role_id']??"";
         $gender = $_POST['gender']??"";
-        //$officer_user_id = $_SESSION['user_id'];
-        $officer_user_id = 1; //should get from session
+        $officer_user_id = $_SESSION['auth_user']['user_id'];
+       // $officer_user_id = 1; //should get from session
 
         $req_field = [ $full_name,      $email,          $mobile,     $gender,     $role_id,  $designation,    $officer_user_id   ];
         

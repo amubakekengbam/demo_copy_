@@ -108,7 +108,7 @@ include('includes/sidebar.php');
                         </div>
                         <a href="#" class="small-box-footer">Approved Drivers<i
                                 class="fas fa-arrow-circle-right"></i></a>
-                    </div>
+                    </div>                
                 </div>
 
 
@@ -131,7 +131,33 @@ include('includes/sidebar.php');
                 </div>
 
 
-                <?php  } //end of if($role_id == 3)  ?>
+                <?php  } if($role_id==4){ //end of if($role_id == 3)  ?>
+                    <div class="col-lg-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3> Approved By: </h3>
+
+                            <?php 
+                                global $db;
+                                $sth = $db->query('SELECT user_id, full_name, email, mobile, designation, officer_user_id  FROM users WHERE user_id='.$_SESSION['auth_user']['officer_user_id'].'');
+
+                                // fetch all rows into array, by default PDO::FETCH_BOTH is used
+                                $officer_data = $sth->fetch();
+                                
+                                // iterate over array by index and by name
+                                echo $officer_data['full_name'];   
+                            ?>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">Apply <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                    <?php }?>
+
+                
 
     </section>
 

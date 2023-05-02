@@ -21,6 +21,12 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     case 3 : //driver
       header("Location: ../index.php"); //go to driver page
     break;
+    case 4 : //driver
+      header("Location: ../index.php"); //go to driver page
+    break;
+    case 5 : //driver
+      header("Location: ../index.php"); //go to driver page
+    break;
     default :
       session_destroy();
       session_start();

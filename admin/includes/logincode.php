@@ -55,7 +55,13 @@ if (isset($_POST['submit']) == 'Login') {
 
         try{
             // Connect to the database and query the user table
-            $qry = "select * from users WHERE email=? AND password=?  ";
+            //$qry = "select * from users WHERE email=? AND password=?  ";
+            $qry = "SELECT * 
+            FROM users
+            INNER JOIN roles
+            ON users.role_id = roles.role_id
+            WHERE users.email=? AND users.password =?";
+
             $stmt = $db->prepare($qry);
             $resp = $stmt->execute( [$username, $password] );
             $data = $stmt->fetch(PDO::FETCH_ASSOC);

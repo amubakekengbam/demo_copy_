@@ -9,7 +9,7 @@
              <a href="<?= $url ?>index.php" class="nav-link">Home</a>
          </li>
          <li class="nav-item d-none d-sm-inline-block">
-             <a href="<?= $url ?>user/frm_contact.php" class="nav-link">Contact</a>
+             <a href="<?= $url ?>includes/logout.php" class="nav-link btn btn-danger">LOGOUT</a>
          </li>
      </ul>
 
