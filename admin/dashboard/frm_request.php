@@ -1,7 +1,5 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
-require_once(FORM. "/qry_add_user.php");
-
 
 if(empty($_SESSION['auth_user']['user_id'])){
     header('location:includes/loginnew.php');
@@ -27,7 +25,7 @@ include('../includes/sidebar.php');
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add User</li>
+                        <li class="breadcrumb-item active">Oil </li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -42,40 +40,76 @@ include('../includes/sidebar.php');
             <div class="card card-success card-outline">
                 <div class="card-header"><i class="fas fa-oil-can"></i>OIL</div>
                 <div class="card-body">
-                    <form class="row g-3 needs-validation " name="add_user-form" id="add_user-form" method="POST">
-
-                        <input type="hidden" name="action" id="action_id" value="user_addition" />
+                    <form class="row"  method="POST"  action='query_frm_request.php'>
 
                         <div class="col-4">
-                            <label for="full_name">oil type:</label>
-                            <input type="text" class="form-control" name="full_name" id="full_name" required
+                            <label for="oil_type">oil type:</label>
+                            <input type="text" class="form-control" name="oil_type" id="full_name" required
                                 autofocus />
                         </div>
 
                         <div class="col-4">
-                            <label for="full_name">driver name</label>
-                            <input type="text" class="form-control" name="driver_name" id="full_name" required
+                            <label for="vehicle_number">vehicle number</label>
+                            <input type="text" class="form-control" name="vehicle_number" id="vehicle_number" required
                                 autofocus />
                         </div>
 
                         <div class="col-4">
-                            <label for="full_name"> purpose</label>
-                            <input type="text" class="form-control" name="purpose" id="full_name" required
+                            <label for="purpose"> purpose</label>
+                            <input type="text" class="form-control" name="purpose" id="purpose" required autofocus />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="duty_on"> duty on </label>
+                            <input type="text" class="form-control" name="duty_on" id="duty_on" required autofocus />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="consumption_rate">consumption rate</label>
+                            <input type="text" class="form-control" name="consum_rate" id="consum_rate"
+                                required autofocus />
+                        </div>
+
+                        <div class="col-4">
+                            <label for=" last_issued">Last issued quantity </label>
+                            <input type="text" class="form-control" name="last_issued" id="last_issued" required
                                 autofocus />
                         </div>
 
                         <div class="col-4">
-                            <label for="full_name"> quantity </label>
-                            <input type="text" class="form-control" name="quantity" id="full_name" required
+                            <label for="left_then">Left then</label>
+                            <input type="text" class="form-control" name="left_then" id="left_then" required
                                 autofocus />
                         </div>
-                        
+
                         <div class="col-4">
-                            <label for="full_name"> vehicle number</label>
-                            <input type="text" class="form-control" name="quantity" id="full_name" required
+                            <label for="left_now">Left now</label>
+                            <input type="text" class="form-control" name="left_now" id="left_now" required autofocus />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="present_milometer"> Present Milometer</label>
+                            <input type="number" class="form-control" name="present_milometer" id="present_milometer"
+                                required autofocus />
+                        </div>
+                        <div class="col-4">
+                            <label for="previous_milometer"> Previous Milometer</label>
+                            <input type="number" class="form-control" name="previous_milometer" id="previous_milometer"
+                                required autofocus />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="cover_milometer"> Covered Milometer</label>
+                            <input type="number" class="form-control" name="cover_milometer" id="cover_milometer" required
                                 autofocus />
                         </div>
-                        <button type="button" name="submit" >Submit</button>
+
+
+                        <div class='col-12'>
+                             <br> </br>
+                            <input type="submit" id="submit" name="submit" value="Submit"
+                                class="btn btn-sm btn-primary">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -86,12 +120,6 @@ include('../includes/sidebar.php');
 <?php
 include(INC."/footer.php");
 ?>
-<script>
-var qry_url = "<?=  URL_FORM."/qry_add_user.php" ?>";
-</script>
-
-
-<script src="<?= URL_JS ?>/add_user.js"></script>
 </body>
 
 </html>

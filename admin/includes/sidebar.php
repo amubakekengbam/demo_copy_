@@ -200,8 +200,47 @@
                     </a>
                 </li>
 
-                <?php  } //end of if($role_id == 3)  ?>
+                <?php  } //end of if($role_id == 3)
+                
+                if($role_id==4){
+?>
 
+
+<li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                        Request
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $url ?>dashboard/frm_request.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>oil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/remove_driver.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>servicing </p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+            
+
+               <?php  }
+               
+            ?>
+            
+        
 
 
 
