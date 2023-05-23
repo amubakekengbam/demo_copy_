@@ -40,12 +40,19 @@ include('../includes/sidebar.php');
             <div class="card card-success card-outline">
                 <div class="card-header"><i class="fas fa-oil-can"></i>OIL</div>
                 <div class="card-body">
-                    <form class="row"  method="POST"  action='query_frm_request.php'>
-
+                    <form class="row" method="POST" action='query_frm_request.php'>
+                        <div class="col-12">
+                            <label for="subject"> Subject of Request </label>
+                            <input type="text" class="form-control" name="sub_request" id="sub_request" required autofocus />
+                        </div>
                         <div class="col-4">
                             <label for="oil_type">oil type:</label>
-                            <input type="text" class="form-control" name="oil_type" id="full_name" required
-                                autofocus />
+                            <input type="text" class="form-control" name="oil_type" id="full_name" required autofocus />
+                        </div>
+                        
+                        <div class="col-4">
+                            <label for="purpose">Request of oil(l)</label>
+                            <input type="text" class="form-control" name="amount_oil" id="amount_oil" required autofocus />
                         </div>
 
                         <div class="col-4">
@@ -54,10 +61,7 @@ include('../includes/sidebar.php');
                                 autofocus />
                         </div>
 
-                        <div class="col-4">
-                            <label for="purpose"> purpose</label>
-                            <input type="text" class="form-control" name="purpose" id="purpose" required autofocus />
-                        </div>
+                
 
                         <div class="col-4">
                             <label for="duty_on"> duty on </label>
@@ -66,10 +70,17 @@ include('../includes/sidebar.php');
 
                         <div class="col-4">
                             <label for="consumption_rate">consumption rate</label>
-                            <input type="text" class="form-control" name="consum_rate" id="consum_rate"
-                                required autofocus />
+                            <input type="text" class="form-control" name="consum_rate" id="consum_rate" required
+                                autofocus />
                         </div>
 
+                        
+
+                        <div class="col-4">
+                            <label for="last_issued_date">Lat issue date </label>
+                            <input type="text" class="form-control" name="last_issued_date" id="last_issued_date" required
+                                autofocus />
+                        </div>
                         <div class="col-4">
                             <label for=" last_issued">Last issued quantity </label>
                             <input type="text" class="form-control" name="last_issued" id="last_issued" required
@@ -100,13 +111,13 @@ include('../includes/sidebar.php');
 
                         <div class="col-4">
                             <label for="cover_milometer"> Covered Milometer</label>
-                            <input type="number" class="form-control" name="cover_milometer" id="cover_milometer" required
-                                autofocus />
+                            <input type="number" class="form-control" name="cover_milometer" id="cover_milometer"
+                                required autofocus />
                         </div>
 
 
                         <div class='col-12'>
-                             <br> </br>
+                            <br> </br>
                             <input type="submit" id="submit" name="submit" value="Submit"
                                 class="btn btn-sm btn-primary">
                         </div>

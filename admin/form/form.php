@@ -40,6 +40,31 @@ include('../includes/header.php');
                         </h4>
                     </div>
                     <div class="card-body">
+                      
+                    <h4>
+                            To
+                        </h4>
+
+                        <h5> The Deputy Registrar(Judl),
+                            Hight court of manipur,
+                            Mantripukhri,Imphal
+                        </h5>
+                        <p> Subject: Request for issue of ________________
+                            liters of _____.
+                        </p>
+                        <h5>sir</h5>
+                        <p> I have the honour to request you kindly to issue. __________ for the Vehicle/Generator of
+                            this Registry bearing
+                            No.MN ___________ for official duty of the Hon'ble Mr _____________________.
+                            Detail of Fuel consumption and Mileometer/Odometer readings at present (along with the
+                            previous one) are as shown.
+                        </p>
+                        <p> Mileometer/Odometer reading(in Kilometers)
+                            present :__________________________
+                            previous:_____________________
+                            covered:
+
+                        </p>
                     </div>
                 </div>
             </div>
