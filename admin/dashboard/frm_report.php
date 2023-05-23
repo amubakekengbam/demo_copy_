@@ -41,6 +41,7 @@ include('../includes/sidebar.php');
                                         <th style="width: 100px">Order Number</th>
                                         <th>vehicle_number </th>
                                         <th>Amount of oil</th>
+                                        <th>Forward To</th>
                                         <th> Action</th>
                                         <th style="width: 40px">view</th>
                                     </tr>
@@ -56,12 +57,15 @@ include('../includes/sidebar.php');
                 
                 if ($result->num_rows > 0) {
                     // output data of each row
-                    while($row = $result->fetch_assoc()) {
-    
-                        echo '<tr><td>'.$row["oil_id"].'</td>';
-                        echo '<td>'.$row["vehicle_number"].'</td>';                        
+                    while($row = $result->fetch_assoc()) {    
+                        echo '<tr><td>'.$row["oil_id"].'</td>';                
+                        echo '<td>'.$row["vehicle_number"].'</td>'; 
                         echo '<td>'.$row["amount_oil"].'</td>';
-                        echo '<td>'.$row["officer_id"].'</td>';                     
+                        echo '<td>'.$row["officer_id"].'</td>';     
+                        echo '<td><a type="button" class="btn btn-primary fetch_oil_id" data-toggle="modal"
+                        href="#modal-primary" data-id="'.$row["oil_id"].'">
+                        Update
+                    </a> </td>';                
                         echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td></tr>';
                         $dummy=$row["vehicle_number"];
                     }
@@ -72,10 +76,7 @@ include('../includes/sidebar.php');
                 ?>
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modal-primary">
-                                Forward to
-                            </button>
+                           
 
                             <div class="modal fade" id="modal-primary">
                                 <div class="modal-dialog">
@@ -86,7 +87,7 @@ include('../includes/sidebar.php');
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="" id="oil_update_form">
+                                        <form method="POST" id="oil_update_form">
                                             <div class="modal-body">
 
                                                 <?php
@@ -102,11 +103,13 @@ if ($result->num_rows > 0) {
 }
 
 ?>
+                                                <label for="subject">Officer Name: </label>
                                                 <select name="officer_id" id="officer_id" class="form-control">
                                                     <option value="<?= $dummy?>"><?= $designation?></option>
                                                 </select>
-                                                <input type="text" name="officer_id" class="form-control"
-                                                    value="<?= $dummy?>">
+                                                <label for="subject">Oil Id:</label>
+                                                <input type="text" name="oil_id" class="form-control officer_oil_id"
+                                                    value="">
                                                 <p></p>
                                             </div>
                                             <div class="modal-footer justify-content-between">
@@ -149,39 +152,31 @@ include("../includes/footer.php");
 <script>
 $(document).ready(function() {
 
+    
+    $(".fetch_oil_id").click(function(){
+        var my_id_value = $(this).data('id');
+        $(".officer_oil_id").val(my_id_value);
+    })
+   
 
-    var form = $("#oil_update_form");
+    $(".save_change").click(function() {
+        var officer_oil_id = $(".officer_oil_id").val();
+      //  alert(officer_oil_id);
+        var form = $("#oil_update_form");
     if (!form.valid()) {
         //return false;
     }
-
-
-    var param = form.serialize();
-
-    console.log(param);
-
-    $(".save_change").click(function() {
-
-        //alert('hello');
+        var param = form.serialize();
+       console.log(param);
         $.ajax({
             url: 'update_oil.php',
             method: "POST",
             data: param,
-            dataType: "json",
             enctype: 'multipart/form-data',
             success: function(datalist) {
-                if (datalist == true) {
-                    alert('save suceessfulll');
-                }
-
-            },
-            error: function(jqXHR, exception, errorThrown) {
-                result = {
-                    status: 0,
-                    msg: JSON.parse(jqXHR.responseText)
-                };
-                $("#loading-div").hide();
+                alert(datalist);
             }
+          
         });
     })
 
