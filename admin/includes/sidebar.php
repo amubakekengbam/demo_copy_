@@ -68,7 +68,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                           Management
+                            Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -156,7 +156,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                          Management
+                            Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -184,21 +184,70 @@
                             
                         if($role_id == 3){   //driver
                             ?>
-                <!--HTML CONTENT-->
 
                 <li class="nav-item">
-                    <a href="<?= $url ?>index.php" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="<?= $url ?>user/profile.php" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
                         <p>
-                            Dashboard
-                        </p>
-                        </br>
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
+                            Profile
                         </p>
                     </a>
                 </li>
+   
+
+                <li class="nav-item">
+                    <a href="<?= $url ?>dashboard/frm_report.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            Report
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= $url ?>dashboard/frm_request.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            Request
+                        </p>
+                    </a>
+                </li>
+
+
+
+
+
+
+                <li class="nav-header"> Setting </li>
+
+
+
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Driver</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/remove_driver.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Remove Driver</p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
 
                 <?php  } //end of if($role_id == 3)
                 
@@ -206,11 +255,11 @@
 ?>
 
 
-<li class="nav-item ">
+                <li class="nav-item ">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                        Request
+                            Request
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -234,13 +283,13 @@
                 </li>
 
 
-            
 
-               <?php  }
+
+                <?php  }
                
             ?>
-            
-        
+
+
 
 
 

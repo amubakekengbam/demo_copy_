@@ -17,7 +17,7 @@ $url = $http . $_SERVER["SERVER_NAME"].'/demo_copy/admin/';
 
 <!DOCTYPE html>
 <html lang="en">
-<head>  "viewport" content="width=device-width, initial-scale=1">
+<head> 
   <title>VMS</title>
 
   <!-- Google Font: Source Sans Pro -->

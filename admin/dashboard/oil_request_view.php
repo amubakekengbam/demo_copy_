@@ -107,7 +107,7 @@ if ($result->num_rows > 0) {
                                                 <div class="col-sm-4 invoice-col">
                                                     From
                                                     <address>
-                                                        <strong>Joint Registrar</strong><br>
+                                                        <strong><?=$duty_on?></strong><br>
                                                         High court of Manipur<br>
                                                         Mantripukhri,Imphal<br>
                                                         Email: jrghcmimphal@gmail.com
@@ -175,21 +175,21 @@ if ($result->num_rows > 0) {
                                                             <tr>
                                                                 <td><b>Present :<?=$_SESSION['auth_user']['full_name'] ?> <b></td>
                                                                 <td> <?= $present_milometer?></td>
-                                                                <td> <b>Last issued Qty:</b><?=$last_issued_date?></td>
-                                                                <td>
+                                                                <td> <b>Last issued Qty:</b><?=$last_issue_quantity?></td>
+                                                                <td> <b>rate: </b> <?=$consumption_rate?>
                                                                 </td>
-                                                                <td></td>
+                                                                <td><b>date: </b> <?=$last_issued_date?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><b>Previous :<b></td>
                                                                 <td><?=$prev_milometer?></td>
-                                                                <td><b>Left then : </b><?=$left_then?></td>
-                                                                <td> </td>
+                                                                <td><b>Left then : </b> <?=$left_then?></td>
+                                                                <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><b>Covered:<b>   <?= $cover_milometer?></td>
-                                                                <td> </td>
+                                                                <td><b>Covered: <b> </td>
+                                                                <td> <?= $cover_milometer?> </td>
                                                                 <td><b>left now: </b> <?=$left_now?></td>
                                                                 <td>
                                                                 </td>

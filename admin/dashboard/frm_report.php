@@ -4,7 +4,11 @@ include("../includes/header.php");
 include('../includes/topbar.php');
 include('../includes/sidebar.php');
 
+
+
 ?>
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="<?=URL_ASSETS?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <div class="content-wrapper">
 
     <div class="content-header">
@@ -41,6 +45,7 @@ include('../includes/sidebar.php');
                                         <th style="width: 100px">Order Number</th>
                                         <th>vehicle_number </th>
                                         <th>Amount of oil</th>
+                                        <th>Status</th>
                                         <th>Forward To</th>
                                         <th> Action</th>
                                         <th style="width: 40px">view</th>
@@ -61,13 +66,37 @@ include('../includes/sidebar.php');
                         echo '<tr><td>'.$row["oil_id"].'</td>';                
                         echo '<td>'.$row["vehicle_number"].'</td>'; 
                         echo '<td>'.$row["amount_oil"].'</td>';
-                        echo '<td>'.$row["officer_id"].'</td>';     
-                        echo '<td><a type="button" class="btn btn-primary fetch_oil_id" data-toggle="modal"
+                        echo'<td>
+                        <?php
+                        if ($row ["status"]==1){
+                            echo"Pending";
+                        }if($row["status"]==2){
+                            echo"Accept":
+
+                        }if($row["status"]==3){
+                            echo"Reject";
+                        }
+                        
+                        ?></td>';     
+                        echo '<td>   <select onchange="status_update(this.options[this.selectedIndex].value)">
+                      
+                        <option value="1"> Pending </option>
+                         <option value="2"> Accept</option>
+                         <option value="3"> Reject </option>
+
+
+                        </select>
+                        <a type="button" class="btn btn-primary fetch_oil_id" data-toggle="modal"
                         href="#modal-primary" data-id="'.$row["oil_id"].'">
                         Update
-                    </a> </td>';                
-                        echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td></tr>';
-                        $dummy=$row["vehicle_number"];
+                    </a>  <button type="button" class="btn btn-success swalDefaultSuccess">
+                    Launch Success Toast
+                  </button> </td>';   
+                  echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td>';
+                  echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td>
+                  </tr>';
+                  $dummy=$row["vehicle_number"];
+             
                     }
                 } else {
                     echo "0 results";
@@ -91,7 +120,7 @@ include('../includes/sidebar.php');
                                             <div class="modal-body">
 
                                                 <?php
-$result = $conn->query("SELECT * FROM users where designation LIKE '%Joint Register%';");
+$result = $conn->query("SELECT * FROM users where designation LIKE '%Register General%';");
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {    
@@ -149,10 +178,20 @@ if ($result->num_rows > 0) {
 include("../includes/footer.php");
 ?>
 </body>
+
+<!-- SweetAlert2 -->
+<script src="<?=URL_ASSETS?>/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
 $(document).ready(function() {
 
-    
+    var Toast = Swal.mixin({
+      
+    });
+function status_update(value){
+    alert(value);
+
+}
+
     $(".fetch_oil_id").click(function(){
         var my_id_value = $(this).data('id');
         $(".officer_oil_id").val(my_id_value);
@@ -174,7 +213,12 @@ $(document).ready(function() {
             data: param,
             enctype: 'multipart/form-data',
             success: function(datalist) {
-                alert(datalist);
+                datalist = datalist.replace(/^\s+|\s+$/g, '');
+                console.log(datalist);
+                Toast.fire({
+        icon: 'success',
+        title: datalist
+      })
             }
           
         });

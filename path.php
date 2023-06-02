@@ -9,7 +9,7 @@ define("URL_ROOT","http://".$_SERVER['SERVER_NAME']."/demo_copy"); //for url
 /**
  * url constant
  */
-define("URL_ASSETS",URL_ROOT."/assests");
+define("URL_ASSETS",URL_ROOT."/admin/assests");
 define("URL_JS",URL_ROOT."/js");
 define("URL_FORM",URL_ROOT."/admin/form");
 

@@ -76,11 +76,11 @@ require_once(FORM."/qry_add_user.php");
                                 <input type="text" class="form-control input1" name="role_name" id="role_name" required />
                             </div>
                         </div>
-
+<!-- 
                         <div>
                             <label for="officer_name ">Officer Name:</label>
                             <input type="text" class="form-control input1" name='officer_name' id='officer_name' placeholder="Officer Name">
-                        </div>
+                        </div> -->
 
 
                         <div class="mb-3">
