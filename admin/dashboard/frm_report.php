@@ -78,21 +78,21 @@ include('../includes/sidebar.php');
                         }
                         
                         ?></td>';     
-                        echo '<td>   <select onchange="status_update(this.options[this.selectedIndex].value)">
-                      
-                        <option value="1"> Pending </option>
-                         <option value="2"> Accept</option>
-                         <option value="3"> Reject </option>
-
-
-                        </select>
+                        echo '<td>  
                         <a type="button" class="btn btn-primary fetch_oil_id" data-toggle="modal"
                         href="#modal-primary" data-id="'.$row["oil_id"].'">
                         Update
                     </a>  <button type="button" class="btn btn-success swalDefaultSuccess">
                     Launch Success Toast
                   </button> </td>';   
-                  echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td>';
+                  echo '<td>
+                  <a>
+                  <button type="button" class="btn btn-block btn-outline-danger btn-sm    reject_request"><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>
+                  <a>
+                  <button type="button" class="btn btn-block btn-outline-success btn-sm"><i class="fa fa-check" style="font-size:48px;color:green"></i></button></a></td>
+                  ';
+
+                
                   echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td>
                   </tr>';
                   $dummy=$row["vehicle_number"];
@@ -205,6 +205,27 @@ function status_update(value){
     if (!form.valid()) {
         //return false;
     }
+
+    
+    $(".request_reject").click(function(){
+        var my_id_value = $(this).data('id');
+        $(".officer_oil_id").val(my_id_value);
+    })
+   
+
+    $(".save_change").click(function() {
+        var officer_oil_id = $(".officer_oil_id").val();
+      //  alert(officer_oil_id);
+        var form = $("#oil_update_form");
+    if (!form.valid()) {
+        //return false;
+    }
+
+
+
+
+
+
         var param = form.serialize();
        console.log(param);
         $.ajax({
