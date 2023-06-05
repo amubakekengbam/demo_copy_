@@ -39,7 +39,7 @@ include('../includes/sidebar.php');
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th style="width: 100px">Order Number</th>
@@ -185,7 +185,36 @@ include("../includes/footer.php");
 
 <!-- SweetAlert2 -->
 <script src="<?=URL_ASSETS?>/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script>
+  <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+<script tye='text/javascript'>
+$('#dataTable').DataTable({
+
+    'serverSide': true,
+    'processing': true,
+    'paging': tur,
+    'oder':[];
+    'ajax':{
+        'url':'fetch_data.php',
+        'type':'post;
+    
+    },
+    'success': function(nRow, aData,iDAtaIndex){
+        $(nRow).attr('id',aData[0]);
+    }
+    'reject':[{
+        'target':[0],
+        'orderable':false,
+    }]
+})
 $(document).ready(function() {
 
     var Toast = Swal.mixin({
