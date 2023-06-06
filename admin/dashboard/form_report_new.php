@@ -57,57 +57,8 @@ include('../includes/sidebar.php');
                 FROM oil as o
                 LEFT JOIN oil_report as oa
                 ON o.oil_id = oa.oil_table_id WHERE oa.o_user_id=".$_SESSION['auth_user']['user_id']."";
-
-                $result = $conn->query($sql);
-                
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {   
-                        
-                        
-                        echo '<tr><td>'.$row["oil_id"].'</td>';                
-                        echo '<td>'.$row["vehicle_number"].'</td>'; 
-                        echo '<td>'.$row["amount_oil"].'</td>';
-                        echo'<td>
-                        <?php
-                        if ($row ["status"]==1){
-                            echo"Pending";
-                        }if($row["status"]==2){
-                            echo"Accept":
-
-                        }if($row["status"]==3){
-                            echo"Reject";
-                        }
-                        
-                        ?></td>';     
-                        echo '<td>  
-                        <a type="button" class="btn btn-primary fetch_oil_id" data-toggle="modal"
-                        href="#modal-primary" data-id="'.$row["oil_id"].'">
-                        Update
-                    </a>  <button type="button" class="btn btn-success swalDefaultSuccess">
-                    Launch Success Toast
-                  </button> </td>';   
-                  echo '<td><form action="oil_token.php" method="POST">
-                  <a>
-                  <button type="button" class="btn btn-block btn-outline-danger btn-sm "   name="reject_request" id="reject_request" value="0"><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>
-                  <a>
-                  <button type="button" class="btn btn-block btn-outline-success btn-sm" name="approve_request"  id="approve_request" value="1"><i class="fa fa-check" style="font-size:48px;color:green"></i></button></a></td>
-                  </form>';
-
-                
-                  echo '<td><a class="btn btn-success" href="'.$url.'dashboard/oil_request_view.php?id='.$row["oil_id"].'">View</a></td>
-                  </tr>';
-                  $dummy=$row["vehicle_number"];
-
-                
-             
-                    }
-                } else {
-                    echo "0 results";
-                }
-
                 ?>
-                                </tbody>
+            </tbody>
                             </table>
                            
 
@@ -225,80 +176,8 @@ function status_update(value){
 
 }
 
-    $(".fetch_oil_id").click(function(){
-        var my_id_value = $(this).data('id');
-        $(".officer_oil_id").val(my_id_value);
-    })
-
-
-
-    $('#reject_request').click(function()}{
-        $.ajax({
-            url:'change_status.php',
-            type:'POST',
-            data:{ status:'new_status_value'},
-            success:function(response){
-            console.log(response);
-        },
-        error:function(error){
-            console.log(error);
-        }
-        })
-
-    });
-   
-
-    $(".save_change").click(function() {
-        var officer_oil_id = $(".officer_oil_id").val();
-      //  alert(officer_oil_id);
-        var form = $("#oil_update_form");
-    if (!form.valid()) {
-        //return false;
     }
-
-    
-    $(".request_reject").click(function(){
-        var my_id_value = $(this).data('id');
-        $(".officer_oil_id").val(my_id_value);
-    })
-   
-
-    $(".save_change").click(function() {
-        var officer_oil_id = $(".officer_oil_id").val();
-      //  alert(officer_oil_id);
-        var form = $("#oil_update_form");
-    if (!form.valid()) {
-        //return false;
-    }
-
-
-
-
-
-
-        var param = form.serialize();
-       console.log(param);
-        $.ajax({
-            url: 'update_oil.php',
-            method: "POST",
-            data: param,
-            enctype: 'multipart/form-data',
-            success: function(datalist) {
-                datalist = datalist.replace(/^\s+|\s+$/g, '');
-                console.log(datalist);
-                Toast.fire({
-        icon: 'success',
-        title: datalist
-      })
-            }
           
-        });
-    })
-
-
-
-
-});
 </script>
 
 

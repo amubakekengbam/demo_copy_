@@ -142,7 +142,7 @@ if ($result->num_rows > 0) {
                                                 </select>
                                                 <label for="subject">Oil Id:</label>
                                                 <input type="text" name="oil_id" class="form-control officer_oil_id"
-                                                    value="">
+                                                   >
                                                 <p></p>
                                             </div>
                                             <div class="modal-footer justify-content-between">
@@ -186,39 +186,17 @@ include("../includes/footer.php");
 <!-- SweetAlert2 -->
 <script src="<?=URL_ASSETS?>/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
-$(document).ready(function() {
+$(document).ready(function(){
 
     var Toast = Swal.mixin({
       
     });
-function status_update(value){
-    alert(value);
-
-}
 
     $(".fetch_oil_id").click(function(){
         var my_id_value = $(this).data('id');
         $(".officer_oil_id").val(my_id_value);
     })
 
-
-
-    $('#reject_request').click(function()}{
-        $.ajax({
-            url:'change_status.php',
-            type:'POST',
-            data:{ status:'new_status_value'},
-            success:function(response){
-            console.log(response);
-        },
-        error:function(error){
-            console.log(error);
-        }
-        })
-
-    });
-   
-
     $(".save_change").click(function() {
         var officer_oil_id = $(".officer_oil_id").val();
       //  alert(officer_oil_id);
@@ -226,26 +204,6 @@ function status_update(value){
     if (!form.valid()) {
         //return false;
     }
-
-    
-    $(".request_reject").click(function(){
-        var my_id_value = $(this).data('id');
-        $(".officer_oil_id").val(my_id_value);
-    })
-   
-
-    $(".save_change").click(function() {
-        var officer_oil_id = $(".officer_oil_id").val();
-      //  alert(officer_oil_id);
-        var form = $("#oil_update_form");
-    if (!form.valid()) {
-        //return false;
-    }
-
-
-
-
-
 
         var param = form.serialize();
        console.log(param);
@@ -265,10 +223,6 @@ function status_update(value){
           
         });
     })
-
-
-
-
 });
 </script>
 
