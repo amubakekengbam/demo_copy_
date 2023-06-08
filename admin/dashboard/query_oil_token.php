@@ -15,5 +15,19 @@ $_SESSION['userData'] = $userData;
 
 // Redirect to the second page
 header("Location: second_page.php");
+
+
+
+function generateToken($length = 32) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $token = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomIndex = random_int(0, strlen($characters) - 1);
+        $token .= $characters[$randomIndex];
+    }
+
+    return $token;
+}
 exit;
 ?>
