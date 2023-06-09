@@ -196,7 +196,7 @@
    
 
                 <li class="nav-item">
-                    <a href="<?= $url ?>dashboard/frm_report.php" class="nav-link">
+                    <a href="<?= $url ?>dashboard/frm_report_new.php" class="nav-link">
                         <i class="nav-icon fa fa-car"></i>
                         <p>
                             Report

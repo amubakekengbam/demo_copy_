@@ -150,23 +150,29 @@ include("../includes/footer.php");
 
     //initializing datatables with ajax call 
     var oiltable = $('#example2').DataTable({
-      "fnCreatedRow": function(nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        'serverSide': 'true',
-        'processing': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'fetch_data.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [5]
-          },
-
-        ]
+      "ordering": false,
+      "paging": true,
+      "info": false,
+      "searching": true,
+      "autoWidth": false,
+      "language": {
+        searchPlaceholder: "By All Data"
+      },
+      "processing": true,
+      "serverSide": false,
+      "order": [],
+      "ajax": {
+        url: "fetch_data.php",
+        type: "POST"
+      },
+      "columnDefs": [{
+          "orderable": false,
+        }
+        // {
+        //   'visible':false,
+        //   'targets':[0]
+        // }
+      ]      
     });
 
       //fetch data in modal-body
@@ -198,19 +204,52 @@ include("../includes/footer.php");
       })
             }
           
-        });
+        }); //end of modal-body
     });
-    //end of modal-body
 
 
+     //update  approve status 
+     $(document).on('click','.approve_request',function(){
+      var id = $(this).val();
+
+      console.log(id);
+      // $('#exampleModal').modal('show');
+
+      $.ajax({
+        url: "query_fetch_token_data.php",
+        data: {
+          id:id
+        },
+        type: 'post',
+        dataType: "JSON",
+        success: function(data) {              
+            if(data['flag'] ==1){
+              alert(data['data']);
+              oiltable.ajax.reload();
+            }else{
+              alert(data['data']);
+            }
+        }
+      })
+    });
+//
 
 
+//update reject update
+$(document).on('click','.reject_request',function(){
+          //console.log('hello');
+      var table = $(this).data('report_id');
+      var trid = $(this).closest('tr').attr('report_id');
+      // console.log(selectedRow);
+      var id = $(this).val('report_id');
+
+      console.log("reject");
+});
 
 
-    
+//end of reject update
   
-  
-  });
+});
 
 
 </script>

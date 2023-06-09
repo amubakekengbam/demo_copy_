@@ -228,6 +228,19 @@ if ($result->num_rows > 0) {
                                                     </p> -->
                                                 </div>
                                                 <!-- /.col -->
+                                                <?php
+require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
+$output= array();
+$sql =  "SELECT 
+*
+ FROM oil l
+  INNER JOIN oil_report r
+   ON l.oil_id = r.report_id";
+   $result = $conn->query($sql);
+
+?>
+
+
                                                  <div class="col-6">
                                                     <p class="lead"><b>Approve by</b></p>
 
@@ -236,15 +249,40 @@ if ($result->num_rows > 0) {
                                                             <tbody>
                                                                 <tr>
                                                                     <th style="width:50%">Joint Registrar:</th>
-                                                                    <td> Yes/No</td>
+                                                                    <td><?php
+
+if(['oil_status']==0){
+    echo"no";
+}
+else{
+    echo"yes";
+}
+?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Registrar General</th>
-                                                                    <td>No</td>
+                                                                    <td><?php
+
+                                                                    if(['oil_status']==0){
+                                                                        echo"yes";
+                                                                    }
+                                                                    else{
+                                                                        echo"yes";
+                                                                    }
+                                                                    ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Token Generated :</th>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        <?php
+if(['token_status']){
+    
+}
+
+
+
+?>
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>STATUS:</th>
