@@ -48,7 +48,17 @@ include('../includes/sidebar.php');
                     <th>vehicle_number </th>
                     <th>Amount of oil</th>
                     <th>Status</th>
-                    <th>Forward To</th>
+                    
+                   
+                <?php if($role_id == 5){  // ?>
+                  <th>Generate Token</th>
+                  <?php } 
+                  else{
+                    echo '<th>Forward To</th>';
+                            }
+                  ?>
+
+
                     <th> Action</th>
                     <th style="width: 40px">view</th>
                   </tr>
@@ -109,6 +119,58 @@ include('../includes/sidebar.php');
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+
+              //model-primary end 
+
+
+
+              // begin model for token 
+              <div class="modal fade" id="modal-token">
+                <div class="modal-dialog">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Send </h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST" id="oil_update_form">
+                      <div class="modal-body">
+
+                        <?php
+                        $result = $conn->query("SELECT * FROM users where phone='mobile';");
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            $dummy = $row["user_id"];
+                            $designation = $row["designation"];
+                          }
+                        } else {
+                          echo "0 results";
+                        }
+
+                        ?>
+                        <label for="subject">Phone Number: </label>
+                        <select name="officer_id" id="officer_id" class="form-control">
+                          <option value="<?= $dummy ?>"><?= $designation ?></option>
+                        </select>
+                        <label for="subject">Oil Id:</label>
+                        <input type="text" name="oil_id" class="form-control officer_oil_id" value="">
+                        <p></p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-light save_change">send
+                        </button>
+                      </div>
+
+                  </div>
+                  </form>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+    
             </div>
             
           </diV>

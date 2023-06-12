@@ -37,9 +37,9 @@ if ($result->num_rows > 0) {
         Launch Success Toast
         </button>';
         $sub_array[]='<a>
-        <button type="button" class="btn btn-block btn-outline-danger btn-sm reject_request"   name="reject_request" id="reject_request" value="0_'.$row["oil_id"].'"><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>
+        <button type="button" class="btn btn-block btn-outline-danger btn-sm reject_request"   name="reject_request" id="reject_request" value="0_'.$row["oil_id"].'_""><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>
         <a>
-        <button type="button" class="btn btn-block btn-outline-success btn-sm approve_request" name="approve_request"  id="approve_request" value="'.$row["report_id"].'_'.$row["oil_table_id"].'"><i class="fa fa-check" style="font-size:48px;color:green"></i></button></a>';
+        <button type="button" class="btn btn-block btn-outline-success btn-sm approve_request" name="approve_request"  id="approve_request" value="'.$row["report_id"].'_'.$row["oil_table_id"].'"'.(($_SESSION['auth_user']['user_id']==['o_user_id'])&&(['oil_status']==1))?'disabled':''.'><i class="fa fa-check" style="font-size:48px;color:green"></i></button></a>';
         $sub_array[]='<a class="btn btn-success" href="oil_request_view.php?id='.$row["oil_id"].'">View</a>';
         $data[] = $sub_array;
 

@@ -283,6 +283,82 @@
                 </li>
 
 
+                <?php  }
+               
+            ?>
+
+
+                <?php if($role_id == 5){  ?>
+                <!--HTML CONTENT-->
+                <li class="nav-item">
+                    <a href="<?= $url ?>user/profile.php" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a href="<?= $url ?>dashboard/registered.php" class="nav-link">
+                        <i class="nav-icon fa fa-users"></i>
+                        <p>
+                            Register user
+                        </p>
+                    </a>
+                </li> -->
+
+                <li class="nav-item">
+                    <a href="<?= $url ?>dashboard/frm_report_new.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            Report
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-header"> Setting </li>
+
+
+
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Officer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Remove Officer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $url ?>form/add_driver.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage Role</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <!-- <a href="../admin/form/frm_registration.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Registration</p>
+                            </a> -->
+                        </li>
+                    </ul>
+                </li>
+
+            
 
 
                 <?php  }
