@@ -309,7 +309,7 @@
                 </li> -->
 
                 <li class="nav-item">
-                    <a href="<?= $url ?>dashboard/frm_report_new.php" class="nav-link">
+                    <a href="<?= $url ?>dashboard/frm_oil_token.php" class="nav-link">
                         <i class="nav-icon fa fa-car"></i>
                         <p>
                             Report
@@ -329,7 +329,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -354,8 +354,8 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Registration</p>
                             </a> -->
-                        </li>
-                    </ul>
+                        <!-- </li> -->
+                    <!-- </ul> -->
                 </li>
 
             

@@ -6,7 +6,7 @@ $sql =  "SELECT
 *
  FROM oil l
   INNER JOIN oil_report r
-   ON l.oil_id = r.oil_table_id where r.o_user_id = $user_id";
+   ON l.oil_id = r.oil_table_id where r.o_user_id = $user_id ";
 
 
 $result = $conn->query($sql);

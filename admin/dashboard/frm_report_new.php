@@ -122,7 +122,8 @@ include('../includes/sidebar.php');
 
               //model-primary end 
 
-
+             <?php if($role_id=5){
+              ?>
 
               // begin model for token 
               <div class="modal fade" id="modal-token">
@@ -143,7 +144,7 @@ include('../includes/sidebar.php');
                           // output data of each row
                           while ($row = $result->fetch_assoc()) {
                             $dummy = $row["user_id"];
-                            $designation = $row["designation"];
+                            $phone = $row["mobile"];
                           }
                         } else {
                           echo "0 results";
@@ -152,9 +153,9 @@ include('../includes/sidebar.php');
                         ?>
                         <label for="subject">Phone Number: </label>
                         <select name="officer_id" id="officer_id" class="form-control">
-                          <option value="<?= $dummy ?>"><?= $designation ?></option>
+                          <option value="<?= $dummy ?>"><?=$phone ?></option>
                         </select>
-                        <label for="subject">Oil Id:</label>
+                        <label for="subject">OTP:</label>
                         <input type="text" name="oil_id" class="form-control officer_oil_id" value="">
                         <p></p>
                       </div>
@@ -170,7 +171,8 @@ include('../includes/sidebar.php');
                 </div>
                 <!-- /.modal-dialog -->
               </div>
-    
+    <?php } 
+    ?>
             </div>
             
           </diV>
