@@ -142,7 +142,7 @@
     //getiing only integer value in input field
 
     function onlynumberfield(){
-        var digitPeriodRegExp = new RegExp('\\d|\\.');
+        var digitPeriodRegExp = new RegExp('^[0-9]*$');
         /*
      * Line A: Don't do anything if the Control or Alt keys are pressed down,
      * as we don't want to prevent the user from using keyboard shortcuts.
