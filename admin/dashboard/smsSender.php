@@ -2,8 +2,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
-use Illuminate\Support\Facades\Session;
-
 
 class SmsSender{
     //public static $otp_text = " is one time password for Issuing Product, High Court Inventory. -HCLSC";
@@ -44,17 +42,17 @@ class SmsSender{
     }
 
 
-    public static function send_otp($mobile, $key){
+    public static function send_otp($mobile){
         if( !self::check_mobile($mobile) ){
             return false;
         } 
         $otp=rand(1111,9999);
-        Session::put([ $key => $otp,
-                    'expiry_time' => 60*10
-                ]);
+        // Session::put([ $key => $otp,
+        //             'expiry_time' => 60*10
+        //         ]);
 
         //$resp = self::sendsms($mobile, $otp.self::$otp_text);
-        return true;
+        return $otp;
     }
     
 
