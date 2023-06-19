@@ -73,7 +73,8 @@ include('../includes/sidebar.php');
                             <option selected>Choose...</option>
                             <option>Joint Register</option>
                             <option>Register General</option>
-                            <option>CPC</option>
+                            <option> Officer</option>
+                            <option>Issuer</option>
                             <option>Driver</option>
                             </select>
                         </div>

@@ -84,8 +84,10 @@ include('../includes/sidebar.php');
                       </button>
                     </div>
                     <form method="POST" id="otp_form">
-                      <div class="modal-body">
-                        
+                      <div class="modal-body">   
+                          <div class="message">
+
+                          </div>             
                       <?php
                         $result = $conn->query("SELECT  user_id,mobile FROM users where user_id= 78");
                         if ($result->num_rows > 0) {
@@ -99,18 +101,33 @@ include('../includes/sidebar.php');
                         }
 
                         ?>
-                              <label for="subject">phone number: </label>
-                        <select name="officer_id" id="officer_id" class="form-control">
-                          <option value="<?= $dummy ?>"><?= $phone?></option>
+                        
+                        <div class="mymargin'>
+                              <label for="subject" >phone number: </label>
+                        <select name="officer_id" id="mobile" class="form-control">
+                            <option value="" selected>Choose</option>
+                          <option value="<?= $phone ?>"><?= $phone?></option>
                         </select>
-                        <label for="subject">Oil Id:</label>
-                        <input type="text" name="oil_id" class="form-control officer_oil_id" value="">
+                    </div>
+                        <!-- <label for="subject">Oil Id:</label>
+                        <input type="text" name="oil_id" class="form-control officer_oil_id" value=""> -->
                         <p></p>
+                        </div>
+                        <div class="mymargin otpinput" id="otpinput" hidden>
+                    <input type="text" id="mobileOtp" class="form-control" placeholder="Enter the OTP">
                       </div>
-                      <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-light save_change">send
-                        </button>
+
+                        <div class="mymargin otpbtn" id="otpbtn" hidden>
+                        <input id="verify" type="button" class="btn btn-lg btn-success btnVerify" name="verify" value="Verify">
+                          </div>
+
+                         <div class="mymargin resendotpdiv" id="resendotpdiv" hidden>
+                        <input id="resendotp" type="button" class="btn btn-lg btn-primary resendotpBtn" name="resendotp" value="Resend OTP">
+                         </div>
+
+                     <div class="pt-3">
+                        <input type="button" class="btn btn-lg btn-info btnSubmit mymargin" id="sendotp" name="sendotp" value="Send OTP">
+                        
                       </div>
 
                   </div>
@@ -153,6 +170,101 @@ include("../includes/footer.php");
 <script src="<?= URL_ASSETS ?>/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?= URL_ASSETS ?>/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= URL_ASSETS ?>/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script>
+    $(function() {
+        function sendotp(){
+            var mnum = $('#mobile').val();
+            // if (mnum.length == 10 && mnum != null) {
+            var input = {
+                "mobile_number": mnum,
+                "action": "sendotp"
+            };
+            $.ajax({
+                url: 'token.php',
+                type: 'POST',
+                data: input,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success != 0) {
+                        document.getElementById("sendotp").hidden = true;
+                        $(".otpbtn").removeAttr('hidden');
+                        $(".otpinput").removeAttr('hidden');
+                        $(".message").removeAttr('hidden');
+                        $(".resendotpdiv").removeAttr('hidden');
+                        $("#mobile").attr({
+                                            readonly:true, 
+                                            disabled:true
+                                            });
+                                            $(".message").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+                                            response.msg+' <b>'+response.otp+'</b>'+
+  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+    '<span aria-hidden="true">&times;</span></button></div>');
+                    } else {                      
+                        $(".message").html(response.msg);
+                    }
+
+                }
+            });
+        }
+
+        $(document).on('click', '.btnSubmit', function() {                   
+            sendotp();  
+        });
+
+        $(document).on('click', '.resendotpBtn', function() {
+            sendotp();  
+        });
+
+        $(document).on('click', '.btnVerify', function() {
+            var mnum = $('#mobileOtp').val();
+            var input = {
+                "otp_check": mnum,
+                "action": "verify"
+            };
+            $.ajax({
+                url: 'token.php',
+                type: 'POST',
+                data: input,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success == 1) {
+                        document.getElementById("sendotp").hidden = true;
+                        document.getElementById("resendotpdiv").hidden = true;
+                        $(".otpbtn").removeAttr('hidden');
+                        $(".otpinput").removeAttr('hidden');
+                        $('.resendotpdiv').attr('hidden');
+                      
+                        $(".message").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+                                            response.msg+' <b>'+response.token+'</b>'+
+  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+    '<span aria-hidden="true">&times;</span></button></div>');
+                       
+                    } else if (response.success == 2) {
+                        document.getElementById("mobileOtp").hidden = true;
+                        document.getElementById("sendotp").hidden = false;
+                        document.getElementsByClassName("otpinput").hidden = true;
+                        document.getElementById("otpbtn").hidden = true;
+                        document.getElementsByClassName("message").hidden = true;
+                        document.getElementsByClassName("resendotpdiv").hidden = true;
+                        $('#mobile').removeAttr('readonly disabled');
+                                                           
+                                    
+                        $('#mobile').val('');
+                        $('#mobile').attr('placeholder', 'Enter the 10 digit mobile');
+                        $(".message").html(response.msg);
+                    } else {
+                        $(".message").html(response.msg);
+                    }
+                }
+            });
+        })
+
+
+    });
+</script>
+
+
+
 
 <script>
   $(document).ready(function () {
@@ -220,33 +332,6 @@ include("../includes/footer.php");
     });
 
 
-     //update  approve status 
-     $(document).on('click','.approve_request',function(){
-      var id = $(this).val();
-
-      console.log(id);
-      // $('#exampleModal').modal('show');
-
-      $.ajax({
-        url: "query_fetch_token_data.php",
-        data: {
-          id:id
-        },
-        type: 'post',
-        dataType: "JSON",
-        success: function(data) {              
-            if(data['flag'] ==1){
-              alert(data['data']);
-              oiltable.ajax.reload();
-            }else{
-              alert(data['data']);
-            }
-        }
-      })
-    });
-//
-
-
 //update reject update
 $(document).on('click','.reject_request',function(){
           //console.log('hello');
@@ -261,21 +346,59 @@ $(document).on('click','.reject_request',function(){
 
 //end of reject update
 
-
-
-$('#Opt').on('click', function(e){
-    e.preventDefault();
-
-    $.ajax({
-        url: 'smsSender.php',
-        success: function(data){
-            //any code to handle "data" received from target.php
-        }
-    });
-});
   
 });
 
+
+</script>
+
+
+
+
+<script>
+    //getiing only integer value in input field
+
+    function onlynumberfield(){
+        var digitPeriodRegExp = new RegExp('^[0-9]*$');
+        /*
+     * Line A: Don't do anything if the Control or Alt keys are pressed down,
+     * as we don't want to prevent the user from using keyboard shortcuts.
+     * 
+     * Line B: Make sure we're only handling strings, as those are the only
+     * type of value that we are expecting.
+     *
+     * Line C: We only need to filter out single characters. This is important
+     * because it allows us to continue using keys such as Home, End, and
+     * Enter, all of which are useful for maneuvering the form, and all of which
+     * are longer than 1 character.
+     */
+    if(event.ctrlKey // (A)
+    || event.altKey // (A)
+    || typeof event.key !== 'string' // (B)
+    || event.key.length !== 1) { // (C)
+        return;
+    }
+    
+    if(!digitPeriodRegExp.test(event.key)) {
+        //console.log(1);
+        event.preventDefault();
+    }
+    }
+
+    $(function() {
+        
+        var mobile = document.getElementById('mobile');
+        var mobileOtp = document.getElementById('mobileOtp');
+
+        mobile.addEventListener('keydown', function(event) {
+            onlynumberfield();
+}, false);
+
+        mobileOtp.addEventListener('keydown', function(event) {
+            onlynumberfield();
+}, false);
+
+    });
 
 </script>
 

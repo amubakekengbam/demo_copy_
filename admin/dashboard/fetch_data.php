@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         </a>
         <button type="button" class="btn btn-success test">
         Launch Success Toast
-        </button>';
+        </button>';    
         $sub_array[]='<a>
         <button type="button" class="btn btn-block btn-outline-danger btn-sm reject_request"   name="reject_request" id="reject_request" value="0_'.$row["oil_id"].'_""><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>
         <a>

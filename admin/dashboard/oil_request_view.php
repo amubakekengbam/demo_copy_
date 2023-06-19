@@ -59,12 +59,14 @@ if ($result->num_rows > 0) {
         $present_milometer=$row["present_milometer"];
         $prev_milometer=$row["prev_milometer"];
         $left_then = $row["left_then"];
+        $date_apply = $row["date_apply"];
+
     }
 
     $cover_milometer=$present_milometer-$prev_milometer;
-    echo $cover_milometer;
+
 } else {
-    echo "0 results";
+  return false;
 } 
 ?>
 
@@ -73,10 +75,10 @@ if ($result->num_rows > 0) {
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-print-none">
                         <h4>
                           Oil Request
-                            <a href="oil.php" class="btn btn-primary float-right">send</a>
+                           
                         </h4>
                     </div>    
                     <div class="card-body">
@@ -84,7 +86,7 @@ if ($result->num_rows > 0) {
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="callout callout-info">
+                                        <div class="callout callout-info d-print-none">
                                             <h5><i class="fas fa-info"></i> Oil:</h5>
                                            
                                         </div>
@@ -97,7 +99,7 @@ if ($result->num_rows > 0) {
                                                 <div class="col-12">
                                                     <h4>
                                                         <i class="fas fa-globe"></i>High Court of Manipur,Imphal
-                                                        <small class="float-right">Date: 2/10/2014</small>
+                                                        <small class="float-right"><?=$date_apply?></small>
                                                     </h4>
                                                 </div>
                                                 <!-- /.col -->
@@ -233,9 +235,7 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 $output= array();
 $sql =  "SELECT 
 *
- FROM oil l
-  INNER JOIN oil_report r
-   ON l.oil_id = r.report_id";
+ FROM oil_report WHERE oil_table_id=".$_GET['id']."";
    $result = $conn->query($sql);
 
 ?>
@@ -247,43 +247,16 @@ $sql =  "SELECT
                                                     <div class="table-responsive">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
-                                                                    <th style="width:50%">Joint Registrar:</th>
-                                                                    <td><?php
-
-if(['oil_status']==0){
-    echo"no";
-}
-else{
-    echo"yes";
-}
-?></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Registrar General</th>
-                                                                    <td><?php
-
-                                                                    if(['oil_status']==0){
-                                                                        echo"yes";
-                                                                    }
-                                                                    else{
-                                                                        echo"yes";
-                                                                    }
-                                                                    ?></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Token Generated :</th>
-                                                                    <td>
-                                                                        <?php
-if(['token_status']){
-    
-}
-
-
-
-?>
-                                                                    </td>
-                                                                </tr>
+                                                            
+                                                                <?php 
+                                                                   while($row = mysqli_fetch_array($result)) {
+                                                                    $status = $row['oil_status']==1?'Yes':'No';                                                                    
+                                                                        echo ' <tr>
+                                                                        <td>'.$row['o_desg_name'].':&ensp;&ensp;&ensp;'.$status.'</td>
+                                                                    </tr>';
+                                                                }
+                                                                ?>
+                                                            
                                                                 <tr>
                                                                     <th>STATUS:</th>
                                                                     <td>Pending/Done</td>
@@ -298,17 +271,8 @@ if(['token_status']){
 
                                             <!-- this row will not appear when printing -->
                                             <div class="row no-print">
-                                                <div class="col-12">
-                                                    <a href="invoice-print.html" rel="noopener" target="_blank"
-                                                        class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                                    <button type="button" class="btn btn-success float-right"><i
-                                                            class="far fa-credit-card"></i> Submit
-                                                        Payment
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary float-right"
-                                                        style="margin-right: 5px;">
-                                                        <i class="fas fa-download"></i> Generate PDF
-                                                    </button>
+                                                <div class="col-12"> 
+                                                    <button class="btn btn-primary" onclick="window.print()"><i class="fas fa-print"></i>&ensp;Print</button>                                            
                                                 </div>
                                             </div>
                                         </div>

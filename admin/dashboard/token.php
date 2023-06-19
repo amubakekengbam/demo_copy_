@@ -16,7 +16,7 @@ class Token
      */
     public function checknumber()
     {
-        $val = $_POST['mobile_number'];
+        $val =$_POST['mobile_number'];
         $checknumber = new SmsSender;
 
         // $checknumber->send_otp($val);
@@ -48,7 +48,7 @@ class Token
             }
             //setting session expire time and generatig otp          
             $_SESSION['start_time'] = time();
-            $_SESSION['expire_time'] = $_SESSION['start_time'] + (1 * 25); //add 20 seconds. Change 20 to 60 for 1 minute 
+            $_SESSION['expire_time'] = $_SESSION['start_time'] + (1 * 20); //add 20 seconds. Change 20 to 60 for 1 minute 
             $_SESSION['otp'] = $otp;
             $result = ["success" => 1, "msg" => "OTP Generate Expire Time 20sec <br>", "otp" => $otp];
             return $result;

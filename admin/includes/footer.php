@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer d-print-none">
     <strong>Copyright &copy; 2023-2024 <a href="http://adminlte.io">High Court of Manipur</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
