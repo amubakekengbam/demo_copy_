@@ -15,10 +15,10 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     case 1:  //admin
       header("Location: ../index.php"); //go to admin page
     break;
-    case 2 : //officer
+    case 2 : //approver 1
       header("Location: ../index.php"); //go to officer page
     break;
-    case 3 : //driver
+    case 3 : //approver 2
       header("Location: ../index.php"); //go to driver page
     break;
     case 4 : //driver
@@ -27,6 +27,8 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     case 5 : //driver
       header("Location: ../index.php"); //go to driver page
     break;
+    case 6://officer
+      header("location:../index.php");
     default :
       session_destroy();
       session_start();

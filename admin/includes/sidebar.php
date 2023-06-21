@@ -317,7 +317,7 @@
                     </a>
                 </li>
 
-                <li class="nav-header"> Setting </li>
+                <!-- <li class="nav-header"> Setting </li>
 
 
 
@@ -328,7 +328,7 @@
                             Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
-                    </a>
+                    </a> -->
                     <!-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= $url ?>form/frm_add_user.php" class="nav-link">

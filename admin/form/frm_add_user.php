@@ -75,6 +75,7 @@ include('../includes/sidebar.php');
                             <option>Register General</option>
                             <option> Officer</option>
                             <option>Issuer</option>
+                            <option>Officer</option>
                             <option>Driver</option>
                             </select>
                         </div>

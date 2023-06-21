@@ -32,6 +32,31 @@ include('../includes/sidebar.php');
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+<!-- 
+/php
+
+$sql =  "SELECT  'v_number' FROM `vehicle_number`";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+
+    while($row = $result->fetch_assoc()) {
+
+       
+        $sub_request=$row[""];
+       
+
+    }
+
+    $cover_milometer=$present_milometer-$prev_milometer;
+
+} else {
+  return false;
+} 
+?>  -->
+
 
 
     <!-- start of content body -->
@@ -47,7 +72,12 @@ include('../includes/sidebar.php');
                         </div>
                         <div class="col-4">
                             <label for="oil_type">oil type:</label>
-                            <input type="text" class="form-control" name="oil_type" id="full_name" required autofocus />
+                            
+                            <select name="oil_type" id="full_name" class="form-control">
+                                <option value="" selected>Choose</option>
+                                <option value="diesel"> Diesel</option>
+                                <option value="Petrol"> Petrol</option>
+                            </select>
                         </div>
                         
                         <div class="col-4">
@@ -56,16 +86,18 @@ include('../includes/sidebar.php');
                         </div>
 
                         <div class="col-4">
-                            <label for="vehicle_number">vehicle number</label>
-                            <input type="text" class="form-control" name="vehicle_number" id="vehicle_number" required
-                                autofocus />
+                            <label >vehicle number</label>
+                            <!-- <input type="text" class="form-control" name="vehicle_number" id="vehicle_number" value="" required
+                                autofocus ></input> -->
+                                <select for="vehicle_number" name="vehicle_number"  id="vehicle_number" class='form-control' oncChange="getVehicle(this.value);">
+                                    <option value=""> </option>
                         </div>
 
                 
 
                         <div class="col-4">
                             <label for="duty_on"> duty on </label>
-                            <input type="text" class="form-control" name="duty_on" id="duty_on" required autofocus />
+                            <input type="text" class="form-control" name="duty_on" id="duty_on"  value="" required autofocus />
                         </div>
 
                         <div class="col-4">
@@ -77,8 +109,8 @@ include('../includes/sidebar.php');
                         
 
                         <div class="col-4">
-                            <label for="last_issued_date">Lat issue date </label>
-                            <input type="text" class="form-control" name="last_issued_date" id="last_issued_date" required
+                            <label for="last_issued_date">Last issue date </label>
+                            <input type="date" class="form-control" name="last_issued_date" id="last_issued_date" required
                                 autofocus />
                         </div>
                         <div class="col-4">
