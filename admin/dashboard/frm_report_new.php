@@ -47,9 +47,7 @@ include('../includes/sidebar.php');
                     <th style="width: 100px">Order Number</th>
                     <th>vehicle_number </th>
                     <th>Amount of oil</th>
-                    <th>Status</th>
-                    
-                   
+                    <th>Status</th> 
                 <?php if($role_id == 5){  // ?>
                   <th>Generate Token</th>
                   <?php } 

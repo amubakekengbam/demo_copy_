@@ -24,11 +24,12 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     case 4 : //driver
       header("Location: ../index.php"); //go to driver page
     break;
-    case 5 : //driver
+    case 5 :
       header("Location: ../index.php"); //go to driver page
     break;
     case 6://officer
       header("location:../index.php");
+      break;
     default :
       session_destroy();
       session_start();

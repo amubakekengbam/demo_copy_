@@ -80,6 +80,7 @@ class Token
     }
 }
 
+
 /**
  * Accessing the above Class Method via AJAX function from the check.php file
  */
@@ -99,6 +100,16 @@ if ($action != "") {
     } elseif ($action == "verify") {
         $otp_obj = new Token;
         $otp_check = $otp_obj->check_otp();
+        if($otp_check['success'] == 1){
+            /** insert token to db and change token status */
+            $stmt=$db->prepare ("INSERT INTO  oil_report  (token_number) values(:token)");
+            //$stmt->blind_param($token);
+            $stmt->execute([
+                "token"=>$otp_check['token']
+            ]);
+        }
+        
+
         echo json_encode($otp_check);
     }
 }

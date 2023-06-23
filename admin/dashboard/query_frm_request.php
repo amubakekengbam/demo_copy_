@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
 
 <?php
-    if($_POST['submit']) {
+    if(isset($_POST['submit'])) {
     $user_id=$_SESSION['auth_user']['user_id'];
     $officer_id=$_SESSION['auth_user']['officer_user_id'];
     $subject_request=$_POST['sub_request'];
@@ -42,5 +42,16 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     echo 'form has successfully send'.$last;
    // header('Location:index.php');
      }
+    }
+
+    if(isset($_POST['fetched_officer_id'])){
+        $offcer_id = $_POST['fetched_officer_id'];
+        $sql = "SELECT * FROM vehicle_number where officer_user_id=$offcer_id";
+        $result = $conn->query($sql);
+        $data=array();
+        while($row = $result->fetch_assoc()){
+            $data[]=$row['v_number'];
+        }
+        echo json_encode($data);
     }
     ?>
