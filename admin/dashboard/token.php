@@ -48,7 +48,7 @@ class Token
             }
             //setting session expire time and generatig otp          
             $_SESSION['start_time'] = time();
-            $_SESSION['expire_time'] = $_SESSION['start_time'] + (1 * 20); //add 20 seconds. Change 20 to 60 for 1 minute 
+            $_SESSION['expire_time'] = $_SESSION['start_time'] + (1 * 60); //add 20 seconds. Change 20 to 60 for 1 minute 
             $_SESSION['otp'] = $otp;
             $result = ["success" => 1, "msg" => "OTP Generate Expire Time 20sec <br>", "otp" => $otp];
             return $result;
@@ -102,7 +102,8 @@ if ($action != "") {
         $otp_check = $otp_obj->check_otp();
         if($otp_check['success'] == 1){
             /** insert token to db and change token status */
-            $stmt=$db->prepare ("INSERT INTO  oil_report  (token_number) values(:token)");
+            $smt="UPDATE `oil_report` SET (token_number) values(:token) WHERE oil_table_id=".$_GET['id']."";
+            /*$stmt=$db->prepare ("INSERT INTO  oil_report WHERE oil_status=1 AND r.o_user_id =80 (token_number) values(:token)"); */
             //$stmt->blind_param($token);
             $stmt->execute([
                 "token"=>$otp_check['token']

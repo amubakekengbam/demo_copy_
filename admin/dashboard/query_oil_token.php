@@ -31,10 +31,10 @@ if ($result->num_rows > 0) {
         $sub_array[]= $val_status;
         $sub_array[]='<a type="button" id="fetch_oil_id" class="btn btn-primary fetch_oil_id" data-toggle="modal"
         href="#modal-primary" data-id="'.$row["oil_id"].'">
-        SEND OTP
+       Generate Token
         </a>
-        <button type="button" class="btn btn-success test">
-         Generate Token
+        <button type="button" class="btn btn-success view_token" id="token_id"  data-toggle="model" href=">
+        View Token
         </button>';
         /* $sub_array[]= '<a href="<?= $url ?>admin/check.php" class="nav-link  fetch_oil_id id="fetch_oil_id"> send otp</a>';*/
         $sub_array[]='<a>
