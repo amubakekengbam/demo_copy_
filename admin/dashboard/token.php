@@ -102,15 +102,28 @@ if ($action != "") {
         $otp_check = $otp_obj->check_otp();
         if($otp_check['success'] == 1){
             /** insert token to db and change token status */
-            $smt="UPDATE `oil_report` SET (token_number) values(:token) WHERE oil_table_id=".$_GET['id']."";
-            /*$stmt=$db->prepare ("INSERT INTO  oil_report WHERE oil_status=1 AND r.o_user_id =80 (token_number) values(:token)"); */
-            //$stmt->blind_param($token);
-            $stmt->execute([
-                "token"=>$otp_check['token']
-            ]);
+
+            $sql = 'UPDATE oil_report
+            SET token_number = :token_number
+            WHERE report_id = :report_id';
+
+            // prepare statement
+            $statement = $db->prepare($sql);
+
+            // bind params
+            $statement->bindParam(':token_number', $otp_check['token']);
+            $statement->bindParam(':report_id', $_POST['oil_report_id'], PDO::PARAM_INT);
+
+            // execute the UPDATE statment
+            if ($statement->execute()) {
+                $result = ["success" => 1, "msg" => "Token Generated: ".$otp_check['token']."!!"];
+            }else{
+                $result = ["success" => 2, "msg" => "Fail to Generate"];
+            }
+            echo json_encode($result);
+        }else{
+            echo json_encode($otp_check);
         }
         
-
-        echo json_encode($otp_check);
     }
 }

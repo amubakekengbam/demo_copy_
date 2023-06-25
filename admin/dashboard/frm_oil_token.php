@@ -74,69 +74,67 @@ include('../includes/sidebar.php');
                 ON o.oil_id = oa.oil_table_id WHERE oa.o_user_id=" . $_SESSION['auth_user']['user_id']."";
               ?>
 
-              <div class="modal fade" id="modal-primary">
+              <div class="modal fade" id="modal-primary" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content bg-primary">
+                  <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">OTP Verification</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                      <h4 class="modal-title">OTP Verification</h4>                    
                     </div>
                     <form method="POST" id="otp_form">
                       <div class="modal-body">   
-                          <div class="message">
-
-                          </div>             
-                      <?php
-                        $result = $conn->query("SELECT  user_id,mobile FROM users where user_id= 78");
-                        if ($result->num_rows > 0) {
-                          // output data of each row
-                          while ($row = $result->fetch_assoc()) {
-                            $dummy = $row["user_id"];
-                            $phone= $row["mobile"];
-                          }
-                        } else {
-                          echo "0 results";
-                        }
-
-                        ?>
+                          <div class="message" id="message"></div>             
+                          <?php
+                            $result = $conn->query("SELECT  user_id,mobile FROM users where user_id= 78");
+                            if ($result->num_rows > 0) {
+                              // output data of each row
+                              while ($row = $result->fetch_assoc()) {
+                                $dummy = $row["user_id"];
+                                $phone= $row["mobile"];
+                              }
+                            } else {
+                              echo "0 results";
+                            }
+                            ?>
                         
-                        <div class="mymargin'>
-                              <label for="subject" >phone number: </label>
-                        <select name="officer_id" id="mobile" class="form-control">
-                            <option value="" selected>Choose</option>
-                          <option value="<?= $phone ?>"><?= $phone?></option>
-                        </select>
-                    </div>
-                        <!-- <label for="subject">Oil Id:</label>
-                        <input type="text" name="oil_id" class="form-control officer_oil_id" value=""> -->
-                        <p></p>
-                        </div>
-                        <div class="mymargin otpinput" id="otpinput" hidden>
-                    <input type="text" id="mobileOtp" class="form-control" placeholder="Enter the OTP">
-                      </div>
+                        <div class="mymargin">
+                            <label for="mobile" >Phone number: </label>
+                            <select name="mobile" id="mobile" class="form-control">
+                                <option value="" selected>Choose</option>
+                              <option value="<?= $phone ?>"><?= $phone?></option>
+                            </select>
+                        </div>                     
+                        <input type="hidden" name="oil_report_id" class="form-control oil_report_id" value="">
 
-                        <div class="mymargin otpbtn" id="otpbtn" hidden>
-                        <input id="verify" type="button" class="btn btn-lg btn-success btnVerify" name="verify" value="Verify">
-                          </div>
-
-                         <div class="mymargin resendotpdiv" id="resendotpdiv" hidden>
-                        <input id="resendotp" type="button" class="btn btn-lg btn-primary resendotpBtn" name="resendotp" value="Resend OTP">
+                        <div class="otpinput pt-2" id="otpinput" hidden>
+                          <input type="text" id="mobileOtp" class="form-control" name="mobileOtp"  placeholder="Enter Your OTP">
+                        </div>                               
+                                   
+                     <div class="row pt-3">                                            
+                      <div class="col-3">
+                        <div id="sendotp">
+                            <input type="button" class="btn btn-info btnSubmit" name="sendotp" value="Send OTP">
+                        </div>                        
+                        <div class="otpbtn" id="otpbtn" hidden>
+                            <input id="verify" type="button" class="btn btn-success btnVerify" name="verify" value="Verify">
                          </div>
-
-                     <div class="pt-3">
-                        <input type="button" class="btn btn-lg btn-info btnSubmit mymargin" id="sendotp" name="sendotp" value="Send OTP">
-                        
                       </div>
-
+                      <div class="col-3">
+                        <div class="resendotpdiv"  id="resendotpdiv" hidden>
+                          <input id="resendotp" type="button" class="btn btn-secondary resendotpBtn" name="resendotp" value="Resend OTP"> 
+                         </div>
+                      </div>
+                      <div class="col-6">
+                        <input type="button" id="close_cancel" class="btn btn-danger" style="float: right;" value="Cancel/Close" data-dismiss="modal" aria-label="Close" onclick="clearmodaldata()">
+                      </div>
+                    </div>
+                    </div>
                   </div>
                   </form>
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
               </div>
-//model-primary end
+<!-- model-primary end -->
               
             </div>
             
@@ -171,7 +169,26 @@ include("../includes/footer.php");
 <script src="<?= URL_ASSETS ?>/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= URL_ASSETS ?>/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script>
-    $(function() {
+     function clearmodaldata(){
+          document.getElementById("otpinput").hidden = true;
+          document.getElementById("otpbtn").hidden = true;
+          document.getElementById("resendotpdiv").hidden = true;
+          document.getElementById("sendotp").hidden = false;
+          document.getElementById("message").hidden = true;
+
+          //reset OTP input Field
+          $('#mobileOtp').val('');
+          $('#mobileOtp').attr('placeholder','Enter Your OTP');        
+
+          $('#mobile').removeAttr('readonly disabled');
+      }
+
+    $(function() {    
+
+        $(document.body).on('hidden.bs.modal', function () {
+         $('#myModal').removeData('bs.modal')
+        });
+
         function sendotp(){
             var mnum = $('#mobile').val();
             // if (mnum.length == 10 && mnum != null) {
@@ -217,10 +234,14 @@ include("../includes/footer.php");
 
         $(document).on('click', '.btnVerify', function() {
             var mnum = $('#mobileOtp').val();
+            var  oil_report_id= $(".oil_report_id").val();
+            console.log(oil_report_id);
             var input = {
                 "otp_check": mnum,
-                "action": "verify"
+                "action": "verify",
+                "oil_report_id":oil_report_id
             };
+            
             $.ajax({
                 url: 'token.php',
                 type: 'POST',
@@ -230,12 +251,11 @@ include("../includes/footer.php");
                     if (response.success == 1) {
                         document.getElementById("sendotp").hidden = true;
                         document.getElementById("resendotpdiv").hidden = true;
-                        $(".otpbtn").removeAttr('hidden');
+                        document.getElementById("otpbtn").hidden = true;
                         $(".otpinput").removeAttr('hidden');
-                        $('.resendotpdiv').attr('hidden');
-                      
+                        $(".resendotpdiv").attr("hidden",true);                                     
                         $(".message").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
-                                            response.msg+' <b>'+response.token+'</b>'+
+                                            response.msg+
   '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
     '<span aria-hidden="true">&times;</span></button></div>');
                        
@@ -257,10 +277,10 @@ include("../includes/footer.php");
                     }
                 }
             });
-        })
+    })
 
 
-    });
+      });
 </script>
 
 
@@ -302,7 +322,7 @@ include("../includes/footer.php");
       //fetch data in modal-body
       $(document).on('click','.fetch_oil_id',function(){
     var my_id_value = $(this).data('id');
-        $(".officer_oil_id").val(my_id_value);
+        $(".oil_report_id").val(my_id_value);
    });
 
    $(document).on('click','.save_change',function(){
