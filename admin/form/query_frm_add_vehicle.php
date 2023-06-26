@@ -15,23 +15,18 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     $service_date=$_POST['service_date'];
     // $purpose=$_POST['purpose'];
      
-    
-
-    // prepare and bind with form attached.
-    $stmt = $conn->prepare("INSERT INTO vehicle_number (officer_user_id, v_number,driver, date_assign,servicing_date) VALUES (?,?,?,?,?)");
-    $stmt->bind_param("sssss",$off_inCharge,$vehicle_number ,$driver,$date_assign,$service_date);
-     $stmt->execute();
-     $last= $conn->insert_id;
-    if (!$last) {
-        print_r($stmt->errorInfo());
+    $qry="SELECT * FROM vehicle_number WHERE v_number=?";
+    $stmt = $db->prepare($qry);
+    $resp = $stmt->execute([$vehicle_number]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    if(empty($data)){
+      $stmt = $conn->prepare("INSERT INTO vehicle_number (officer_user_id, v_number,driver, date_assign,servicing_date) VALUES (?,?,?,?,?)");
+      $stmt->bind_param("sssss",$off_inCharge,$vehicle_number ,$driver,$date_assign,$service_date);
+      $stmt->execute();
+      $last= $conn->insert_id;
+      echo "Data Inserted";
+    }else{
+      echo "Vehicle Already Exist";
     }
-     else{    
-       /* $stmt = $conn->prepare("INSERT INTO oil_report (oil_table_id, o_user_id) VALUES (?,?)");
-    $stmt->bind_param("ss",$last,$officer_id);
-     $stmt->execute();*/
-        
-    echo 'form has successfully send'.$last;
-   // header('Location:index.php');
-     }
-    }
+  }
     ?>

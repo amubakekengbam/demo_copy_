@@ -33,9 +33,9 @@ if ($result->num_rows > 0) {
         href="#modal-primary" data-id="'.$row["report_id"].'">
        Generate Token
         </a>
-        <button type="button" class="btn btn-success view_token" id="token_id"  data-toggle="model" href=">
+        <a  type="button" class="btn btn-success view_token" id="token_id"  data-toggle="model" href="#modal-secondary" data-id="'.$row['report_id'].'">
         View Token
-        </button>';
+        </a>';
         /* $sub_array[]= '<a href="<?= $url ?>admin/check.php" class="nav-link  fetch_oil_id id="fetch_oil_id"> send otp</a>';*/
         $sub_array[]='<a>
         <button type="button" class="btn btn-block btn-outline-danger btn-sm reject_request"   name="reject_request" id="reject_request" value="0_'.$row["oil_id"].'_""><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>

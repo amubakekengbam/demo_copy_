@@ -116,7 +116,7 @@ if ($action != "") {
 
             // execute the UPDATE statment
             if ($statement->execute()) {
-                $result = ["success" => 1, "msg" => "Token Generated: ".$otp_check['token']."!!"];
+                $result = ["success" => 1, "msg" => "Token Generated: ".$otp_check['token']."*"];
             }else{
                 $result = ["success" => 2, "msg" => "Fail to Generate"];
             }

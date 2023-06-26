@@ -317,6 +317,15 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?= $url ?>form/frm_add_vehicle.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                           Add Vehicle
+                        </p>
+                    </a>
+                </li>
+
                 <!-- <li class="nav-header"> Setting </li>
 
 
