@@ -29,13 +29,15 @@ if ($result->num_rows > 0) {
         $sub_array[]= $row['vehicle_number'];
         $sub_array[]= $row['amount_oil'];
         $sub_array[]= $val_status;
-        $sub_array[]='<a type="button" id="fetch_oil_id" class="btn btn-primary fetch_oil_id" data-toggle="modal"
-        href="#modal-primary" data-id="'.$row["report_id"].'">
-       Generate Token
-        </a>
-        <a  type="button" class="btn btn-success view_token" id="token_id"  data-toggle="model" href="#modal-secondary" data-id="'.$row['report_id'].'">
-        View Token
-        </a>';
+        if($row['token_number']=='' ||$row['token_number']==null ){
+            $sub_array[]='<a type="button" id="fetch_oil_id" class="btn btn-primary fetch_oil_id" data-toggle="modal"
+            href="#modal-primary" data-id="'.$row["report_id"].'">
+           Generate Token
+            </a>
+           ';
+        }else{
+            $sub_array[]=$row['token_number'];
+        }      
         /* $sub_array[]= '<a href="<?= $url ?>admin/check.php" class="nav-link  fetch_oil_id id="fetch_oil_id"> send otp</a>';*/
         $sub_array[]='<a>
         <button type="button" class="btn btn-block btn-outline-danger btn-sm reject_request"   name="reject_request" id="reject_request" value="0_'.$row["oil_id"].'_""><i class="fa fa-ban" style="font-size:48px;color:red"></i></button></a>

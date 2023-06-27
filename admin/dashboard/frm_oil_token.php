@@ -155,49 +155,6 @@ include('../includes/sidebar.php');
         <!-- /.modal-dialog -->
     </div>
 
-    // model for view token
-    <div class="modal fade" id="#modal-secondary" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">view Token</h4>
-                </div>
-                <form method="POST" id="token_form">
-                    <div class="modal-body">
-                        <div class="message" id="token_message"></div>
-                        <p class="text-danger">* view your token *</p>
-                        <?php
-                        $result = $conn->query("SELECT  user_id,mobile FROM users where user_id= 78");
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while ($row = $result->fetch_assoc()) {
-                                $dummy = $row["user_id"];
-                                $phone = $row["mobile"];
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        ?>
-
-                        <div class="mymargin">
-                            <label for="mobile">Phone number: </label>
-                            <select name="mobile" id="mobile" class="form-control">
-                                <option value="" selected>Choose</option>
-                                <option value="<?= $phone ?>"><?= $phone ?></option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="oil_report_id" class="form-control oil_report_id" value="">
-
-                    </div>
-
-                </form>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
 
 </div>
 <?php
@@ -234,6 +191,9 @@ function clearmodaldata() {
     $('#mobileOtp').attr('placeholder', 'Enter Your OTP');
 
     $('#mobile').removeAttr('readonly disabled');
+    
+    $('#example2').DataTable().ajax.reload();
+
 }
 
 $(function() {

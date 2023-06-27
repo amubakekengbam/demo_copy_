@@ -23,12 +23,12 @@ include('../includes/sidebar.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Profile</h1>
+                    <h1 class="m-0 text-dark"> Update Profile</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">profile</li>
+                        <li class="breadcrumb-item active"> update profile</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -39,70 +39,67 @@ include('../includes/sidebar.php');
 
 
 
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">Profile Update</h3>
+    <!-- start of content body -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="col-md-6 offset-md-3">
+
+
+
+                <div class="card card-primary card-outline">
+
+                    <br>
+                    <form>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputPassword2">Confirm Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">photo</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <!-- <form method="post" action="qry_update_profile">
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Address</label>
-                    <input type="text" class="form-control" name="address" id="exampleInputEmail1" placeholder="Address">
-                </div>
-                <!-- <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div> -->
-        <!-- <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input"  name="photo" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-            </div>
-            <!-- /.card-body -->
-
-        <!-- <div class="card-footer">
-                <button type="submit" class="btn btn-primary"  onClick="submitFrom();">Submit</button>
-            </div>
-        </form> -->
-
-
-
-        <!-- </div> -->
-
-
-        <form action="qry_upadte_profile.php" id="form_img" method="post" role="form" enctype="multipart/form-data">
-
-
-                <input type="file" name="choosefile" value="" />
-
-                <div>
-
-                    <button type="submit" name="uploadfile">
-
-                        UPLOAD
-
-                    </button>
-
-                </div>
-
-            </form>
-
-
-
     </div>
 
 </div>
@@ -128,14 +125,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
-<?php
-include(INC."/footer.php");
-?>
-
-</body>
-
-</html>
 
 <?php
 include(INC."/footer.php");

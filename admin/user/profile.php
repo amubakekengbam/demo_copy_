@@ -37,48 +37,52 @@ include('../includes/sidebar.php');
     <!-- /.content-header -->
 
 
- 
+
     <!-- start of content body -->
     <div class="page-content">
         <div class="container-fluid">
-            <div class="col-md-6 offset-md-3" >
+            <div class="col-md-6 offset-md-3">
 
 
-                <div class="card card-primary card-outline" >
-                  <br>
+
+                <div class="card card-primary card-outline">
+
+                    <br>
+                    <form class="row" method="POST" action='query_update_profile.php'>
+                        <div class="text-center">
+                            <img src="<?= $url ?>assests/dist/img/<?=$_SESSION['auth_user']['photo'] ?>" ;
+                                style="width: 150px;">
+                        </div>
+
+                        <div class="card-body box-profile">
+
+
+                            <h3 class="profile-username text-center"></h3>
+
+                            <p class="text-muted text-center"><?=$_SESSION['auth_user']['full_name'] ?> </p>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b> Phone</b> <a class="float-right"><?=$_SESSION['auth_user']['mobile'] ?></a>
+                                </li>
+                              
+                                <li class="list-group-item">
+                                    <b>Designation</b> <a class="float-right">
+                                        <?=$_SESSION['auth_user']['designation'] ?></a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="float-right"> <?=$_SESSION['auth_user']['email'] ?></a>
+                                </li>
+                            </ul>
+
+                            <a href="update_profile.php" class="btn btn-primary btn-block update_profile" id="update"
+                                name="update"><b>Update</b></a>
+                        </div>
+                        <!-- /.card-body -->
                         
-                <div class="text-center">
-                <img  src="<?= $url ?>assests/dist/img/<?=$_SESSION['auth_user']['photo'] ?>"; style="width: 150px;" >
-                </div>        
-                            
-                    <div class="card-body box-profile">
-                   
-
-                        <h3 class="profile-username text-center"></h3>
-
-                        <p class="text-muted text-center"><?=$_SESSION['auth_user']['full_name'] ?> </p>
-                      
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b> Department</b> <a class="float-right"> Account Section</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b> Address</b> <a class="float-right"> Imphal</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Designation</b> <a class="float-right"> <?=$_SESSION['auth_user']['designation'] ?></a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Email</b> <a class="float-right"> <?=$_SESSION['auth_user']['email'] ?></a>
-                            </li>
-                        </ul>
-
-                        <a href="#" class="btn btn-primary btn-block"><b>Update</b></a>
-                    </div>
-                    <!-- /.card-body -->
+                     </form>
                 </div>
-
 
             </div>
         </div>
@@ -93,4 +97,5 @@ include(INC."/footer.php");
 ?>
 
 </body>
+
 </html>
