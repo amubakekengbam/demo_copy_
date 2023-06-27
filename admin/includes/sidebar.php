@@ -116,6 +116,13 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= $url ?>user/update_profile.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            profile update                        </p>
+                    </a>
+                </li>
                 <!-- 
                 <li class="nav-item">
                     <a href="/admin/form/frm_registration.php" class="nav-link">
@@ -193,7 +200,13 @@
                         </p>
                     </a>
                 </li>
-   
+                <li class="nav-item">
+                    <a href="<?= $url ?>user/update_profile.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            profile update                        </p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="<?= $url ?>dashboard/frm_report_new.php" class="nav-link">
@@ -316,7 +329,13 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="<?= $url ?>user/update_profile.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                            profile update                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="<?= $url ?>form/frm_add_vehicle.php" class="nav-link">
                         <i class="nav-icon fa fa-car"></i>

@@ -49,7 +49,7 @@ include('../includes/sidebar.php');
                 <div class="card card-primary card-outline">
 
                     <br>
-                    <form>
+                    <form   methode="POST" action="qry_update_profile.php" >  
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
@@ -61,16 +61,10 @@ include('../includes/sidebar.php');
                                 <input type="password" class="form-control" id="exampleInputPassword1"
                                     placeholder="Password">
                             </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
                             
                             <div class="form-group">
                                 <label for="exampleInputPassword2">Confirm Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                <input type="password" class="form-control" id="exampleInputPassword2"
                                     placeholder="Password">
                             </div>
                             <div class="form-group">

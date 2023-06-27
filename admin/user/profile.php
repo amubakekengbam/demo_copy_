@@ -48,7 +48,8 @@ include('../includes/sidebar.php');
                 <div class="card card-primary card-outline">
 
                     <br>
-                    <form class="row" method="POST" action='query_update_profile.php'>
+                    <form>
+                   
                         <div class="text-center">
                             <img src="<?= $url ?>assests/dist/img/<?=$_SESSION['auth_user']['photo'] ?>" ;
                                 style="width: 150px;">
