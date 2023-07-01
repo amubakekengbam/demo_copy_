@@ -51,7 +51,7 @@ include('../includes/sidebar.php');
                     <form>
                    
                         <div class="text-center">
-                            <img src="<?= $url ?>assests/dist/img/<?=$_SESSION['auth_user']['photo'] ?>" ;
+                            <img src="<?= $url ?>assests/uploads/<?=$_SESSION['auth_user']['photo'] ?>" ;
                                 style="width: 150px;">
                         </div>
 
@@ -78,7 +78,7 @@ include('../includes/sidebar.php');
                             </ul>
 
                             <a href="update_profile.php" class="btn btn-primary btn-block update_profile" id="update"
-                                name="update"><b>Update</b></a>
+                                name="update"><b>Edit Profile</b></a>
                         </div>
                         <!-- /.card-body -->
                         

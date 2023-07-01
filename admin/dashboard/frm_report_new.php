@@ -127,7 +127,7 @@ include('../includes/sidebar.php');
               <div class="modal fade" id="modal-token">
                 <div class="modal-dialog">
                   <div class="modal-content bg-primary">
-                    <div class="modal-header">
+                    <div class="modal-header">    
                       <h4 class="modal-title">Send </h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

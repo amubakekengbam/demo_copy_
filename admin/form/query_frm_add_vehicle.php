@@ -1,10 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
 
-?>
-
-
-<?php
     if(isset($_POST['submit'])) {
    /* $user_id=$_SESSION['auth_user']['user_id'];
     $officer_id=$_SESSION['auth_user']['officer_user_id'];*/
@@ -29,4 +25,4 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
       echo "Vehicle Already Exist";
     }
   }
-    ?>
+?>
