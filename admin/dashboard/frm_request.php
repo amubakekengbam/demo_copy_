@@ -172,6 +172,7 @@ include('../includes/sidebar.php');
                
             }
         });
+        
     }
 </script>
 <?php

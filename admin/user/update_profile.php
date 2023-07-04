@@ -14,7 +14,7 @@ include('../includes/topbar.php');
 include('../includes/sidebar.php');
 
 ?>
-
+<link rel="stylesheet" href="<?=URL_ASSETS?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
 
 <div class="content-wrapper">
@@ -46,9 +46,7 @@ include('../includes/sidebar.php');
 
 
 
-                <div class="card card-primary card-outline">
-
-                
+                <div class="card card-primary card-outline">      
                     <form method="POST" action="qry_update_profile.php" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
@@ -65,24 +63,24 @@ include('../includes/sidebar.php');
                             <div class="form-group">
                                 <label for="exampleInputPassword2">Confirm Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword2" name="exampleInputPassword2"
-                                    placeholder="Password">
+                                    placeholder="CPassword">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">photo</label>
-                                <input class="form-control" type="file" name="fileupload">
-                            </div>
-                           
-                       
+                                <label for="exampleInputFile">Profile Photo</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"  name="fileupload">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>                                
+                                </div>
+                            </div> 
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
+        
 
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" class="btn btn-primary" onclick="fun()">Submit</button>
                 </div>
             </div> </div>
             </form>
@@ -93,9 +91,31 @@ include('../includes/sidebar.php');
 </div>
 
 </div>
-
+<script>
+      function fun(){
+       alert("Are you sure to update");
+      }
+    </script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="<?=URL_ASSETS?>/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<?php if(!empty($_SESSION['msg']) && isset($_SESSION['msg'])){?>
+<script>
+  $(function() {
+        var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+        });        
+        Toast.fire({
+            icon: '<?= $_SESSION['msg_status']?>',
+            title: '<?= $_SESSION['msg']?>'
+        })
+    });
+</script>
+<?php } unset($_SESSION['msg']); unset($_SESSION['msg_status']);?>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#form_img").submit(function(e) {

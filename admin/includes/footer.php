@@ -17,3 +17,5 @@
 <script src="<?=$url?>assests/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=$url?>assests/plugins/chart.js/Chart.min.js"></script>
+
+<script src="<?=$url?>assests/dist/js/sweetalert.js"></script>
