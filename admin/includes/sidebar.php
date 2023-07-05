@@ -312,6 +312,18 @@
                     </a>
                 </li>
 
+
+                
+                <li class="nav-item">
+                    <a href="<?= $url ?>dashboard/frm_request.php" class="nav-link">
+                        <i class="nav-icon fa fa-car"></i>
+                        <p>
+                           Request
+                        </p>
+                    </a>
+                </li>
+
+
                 <!-- <li class="nav-item">
                     <a href="<?= $url ?>dashboard/registered.php" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>

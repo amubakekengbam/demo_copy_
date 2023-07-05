@@ -12,6 +12,7 @@ include('../includes/topbar.php');
 include('../includes/sidebar.php');
 
 ?>
+<link rel="stylesheet" href="<?=URL_ASSETS?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
 
 <div class="content-wrapper">
@@ -71,7 +72,7 @@ include('../includes/sidebar.php');
                         </div>
                         <div class='col-4'>
                             <label>Officer:</label><br />
-                            <select name="country" id="duty_on" class="form-control"
+                            <select name="duty_on" id="duty_on" class="form-control"
                                 onChange="getVehicle(this.value);">
                                 <option value="">Select Officer</option>
                                 <?php
@@ -140,7 +141,7 @@ include('../includes/sidebar.php');
                         <div class='col-12'>
                             <br> </br>
                             <input type="submit" id="submit" name="submit" value="Submit"
-                                class="btn btn-sm btn-primary">
+                                class="btn btn-sm btn-primary" onclick="fun()">
                         </div>
                     </form>
                 </div>
@@ -149,6 +150,31 @@ include('../includes/sidebar.php');
     </div>
 </div>
 </div>
+<script>
+function fun() {
+    alert("Are you sure to send it");
+}
+</script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="<?=URL_ASSETS?>/plugins/sweetalert2/sweetalert2.min.js"></script>
+<?php if(!empty($_SESSION['msg']) && isset($_SESSION['msg'])){?>
+    <script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    Toast.fire({
+        icon: '<?= $_SESSION['msg_status']?>',
+        title: '<?= $_SESSION['msg']?>'
+    })
+});
+</script>
+<?php } unset($_SESSION['msg']); unset($_SESSION['msg_status']);?>
+<script type="text/javascript"> </script>
 <script>
     function getVehicle(val) {
         // $("#loader").show();

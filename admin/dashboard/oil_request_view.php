@@ -112,8 +112,7 @@ if ($result->num_rows > 0) {
                                                         <strong><?=$duty_on?></strong><br>
                                                         High court of Manipur<br>
                                                         Mantripukhri,Imphal<br>
-                                                        Email: jrghcmimphal@gmail.com
-                                                    </address>
+                                                        Email: <?= $_SESSION['auth_user']['email']?>                                                </address>
                                                 </div>
                                                 <!-- /.col -->
                                                 <div class="col-sm-4 invoice-col">
@@ -128,7 +127,7 @@ if ($result->num_rows > 0) {
                                                 <!-- /.col -->
                                                 <div class="col-sm-4 invoice-col">
                                                     <b>Subject</b><br>
-                                                    <br>
+                                                    
                                                     <b>Request for Issue of : </b> <?= $sub_request?> <br>
                                                     <b>Liters of:</b> <?= $oil_type?>.
                                                     <!-- <b>liters</b> 2/22/2014<br>
@@ -175,7 +174,7 @@ if ($result->num_rows > 0) {
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td><b>Present :<?=$_SESSION['auth_user']['full_name'] ?> <b></td>
+                                                                <td><b>Present : <b></td>
                                                                 <td> <?= $present_milometer?></td>
                                                                 <td> <b>Last issued Qty:</b><?=$last_issue_quantity?></td>
                                                                 <td> <b>rate: </b> <?=$consumption_rate?>
