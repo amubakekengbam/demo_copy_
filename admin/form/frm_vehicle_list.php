@@ -20,12 +20,12 @@ include('../includes/sidebar.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-blue">ADD VEHICLE</h1>
+                    <h1 class="m-0 text-blue">ADD VEHICLE LIST</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add Vehicle </li>
+                        <li class="breadcrumb-item active">Add Vehicle List </li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -43,27 +43,18 @@ include('../includes/sidebar.php');
             <div class="card card-success card-outline">
                 <div class="card-header"><i class="fas fa-oil-can"></i>Vehicle</div>
                 <div class="card-body">
-                    <form class="row" method="POST" action='query_frm_add_vehicle.php'>
+                    <form class="row" method="POST" action='query_frm_vehicle_list.php'>
 
-                        <div class="col-4">
-                            <label for="off_inCharge">Officer inCharge</label>
+                        <div class="col-6">
+                            <label for="reg_number">Registration Number</label>
 
-                            <select name="off_inCharge" id="off_inCharge" class="form-control">
-                                <option value="" selected>Choose</option>
-                                <?php
-                                if ($result->num_rows > 0) {
-                                    // output data of each rowhttp://localhost/demo_copy/admin/dashboard/frm_request.php#
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo '<option value="' . $row['user_id'] . '">' . $row['full_name'] . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
+                            <input name="reg_number" id="reg_number" class="form-control" required  autofocus>
+                              
                         </div>
   
-                        <div class="col-4">
-                            <label for="purpose">Vehicle number</label>
-                            <input type="text" class="form-control" name="vehicle_number" id="vehicle_number" required
+                        <div class="col-6">
+                            <label for="purpose">Registration  date</label>
+                            <input type="date" class="form-control" name="reg_date" id="reg_date" required
                                 autofocus />
                         </div>
                         <?php  
@@ -71,32 +62,32 @@ include('../includes/sidebar.php');
                                $driver= $conn->query($sql);
                             ?>
 
-                        <div class="col-4">
-                            <label for="driver_name">Driver Name</label>
-                            <select class="form-control" name="driver_name" id="driver_name" required  />
+                        <div class="col-6">
+                            <label for="manufacture_date">Manufacture date</label>
+                            <input type="date" class="form-control" name="manufacture_date" id="manufacture_date" required  />
 
-                            <option value="" selected>Choose</option>
-                            <?php
-                                 if($driver-> num_rows>0)  {
-                                    while($row =$driver-> fetch_assoc()){
-                                        echo'<option value=" '.$row['user_id'].' ">'. $row['full_name'].'</option>';
-                                    }
-                                 } ?>
-
-                            </select>
                         </div>
-                        <div class="col-4">
-                            <label for="duty_on"> date of Assignment </label>
-                            <input type="date" class="form-control" name="date_assign" id="date_assign" value=""
+                        <div class="col-6">
+                            <label for="duty_on">Engine Number</label>
+                            <input type="text" class="form-control" name="eng_no" id="eng_no" value=""
                                 required autofocus />
                         </div>
-                        <div class="col-4">
-                            <label for="service_date"> Next date of servicing </label>
-                            <input type="date" class="form-control" name="service_date" id="service_date" value=""
+                        <div class="col-6">
+                            <label for="chassis_no">Chassis Number </label>
+                            <input type="text" class="form-control" name="chassis_no" id="chassis_no" value=""
                                 required autofocus />
                         </div>
-                        <div class='col-12'>
-                            <br> </br>
+                        <div class="col-6">
+                            <label for="Fuel_type">Fuel Type </label>
+                            <select type="text" class="form-control" name="fuel_type" id="fuel_type" value=""
+                                required autofocus />
+                                <option value="" selected>Choose</option>
+                                <option value="petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+</select>
+                        </div>
+                        <div class='col-4'>
+                            <br> 
                             <input type="submit" id="submit" name="submit" value="Submit"
                                 class="btn btn-sm btn-primary">
                         </div>
@@ -112,4 +103,4 @@ include(INC."/footer.php");
 ?>
 </body>
 
-</html>
+</html>      

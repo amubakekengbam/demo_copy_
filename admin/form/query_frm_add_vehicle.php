@@ -11,7 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/demo_copy/path.php");
     $service_date=$_POST['service_date'];
     // $purpose=$_POST['purpose'];
      
-    $qry="SELECT * FROM vehicle_number WHERE v_number=?";
+    $qry="SELECT * FROM vehicle_number WHERE";
     $stmt = $db->prepare($qry);
     $resp = $stmt->execute([$vehicle_number]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
